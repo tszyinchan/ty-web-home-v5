@@ -1,12 +1,13 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { NoticeBarComponent } from './shared/components/notice-bar';
+import { SiteFooterComponent } from './shared/components/site-footer';
+import { SiteHeaderComponent } from './shared/components/site-header';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, SiteHeaderComponent, SiteFooterComponent, NoticeBarComponent],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
-export class App {
-  protected readonly title = signal('ty-web-home-v5');
-}
+export class App {}

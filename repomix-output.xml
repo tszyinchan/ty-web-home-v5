@@ -1,0 +1,1640 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+.editorconfig
+.gitignore
+angular.json
+package.json
+public/favicon.ico
+README.md
+src/app/app.config.ts
+src/app/app.html
+src/app/app.routes.ts
+src/app/app.scss
+src/app/app.ts
+src/app/core/config/runtime-config.ts
+src/app/core/config/site-content.config.ts
+src/app/core/models/site.models.ts
+src/app/core/services/site-settings.service.ts
+src/app/core/services/theme.service.ts
+src/app/features/case-study.ts
+src/app/features/home.html
+src/app/features/home.scss
+src/app/features/home.ts
+src/app/shared/components/case-card.ts
+src/app/shared/components/notice-bar.ts
+src/app/shared/components/site-footer.ts
+src/app/shared/components/site-header.ts
+src/index.html
+src/main.ts
+src/styles.scss
+start.bat
+tsconfig.app.json
+tsconfig.json
+tsconfig.spec.json
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="src/app/core/config/runtime-config.ts">
+export const RUNTIME_CONFIG = {
+  supabaseUrl: 'REPLACE_WITH_SUPABASE_URL', 
+  supabaseAnonKey: 'REPLACE_WITH_SUPABASE_ANON_KEY',
+};
+</file>
+
+<file path="src/app/core/config/site-content.config.ts">
+import { CaseStudy, PageVariant } from '../models/site.models';
+
+export const CASE_STUDIES: Record<string, CaseStudy> = {
+  'schema-sync': {
+    slug: 'schema-sync',
+    title: 'Schema Synchronization Automation',
+    eyebrow: 'Hospital systems · VB .NET · SQL',
+    shortSummary: 'A scheduled tool designed to reduce schema drift between central and local environments, supporting a more reliable downtime workflow.',
+    tags: ['VB .NET', 'SQL', 'Automation', 'Validation'],
+    context: 'A local pharmacy environment could fall behind the central database structure. During a server outage, that mismatch could limit the ability to use the current system version.',
+    approach: 'I built a console application that compared schema metadata, generated the required update logic, synchronized selected data, and ran during low-risk periods through a scheduler.',
+    resolutionLabel: 'Validation',
+    resolution: 'I planned failure scenarios and post-sync checks so the solution was evaluated for operational reliability, not only whether a script could run once.'
+  },
+  'allergy-data': {
+    slug: 'allergy-data',
+    title: 'Allergy Data Optimization & Bug Resolution',
+    eyebrow: 'Clinical workflow · API · Debugging',
+    shortSummary: 'Improving a slow allergy-information workflow while tracing and correcting a data-update issue in the underlying API behavior.',
+    tags: ['API', 'Performance', 'Regression testing', 'VB .NET'],
+    context: 'Clinical users experienced slow access to allergy information, while the existing update logic did not fully reflect deletion-type changes.',
+    approach: 'I designed a clearer in-application display, included hospital-specific food-allergy information, and packaged shared logic for reuse across systems.',
+    resolutionLabel: 'Resolution',
+    resolution: 'By tracing the API data flow, I identified an endpoint limitation and revised the retrieval approach. Regression checks followed before release.'
+  },
+  'copilot-workflow': {
+    slug: 'copilot-workflow',
+    title: 'Copilot-Assisted Workflow Design',
+    eyebrow: 'AI workflow · Test design · Review boundaries',
+    shortSummary: 'Using AI to broaden test-scenario thinking while keeping judgment, filtering, and final validation with the reviewer.',
+    tags: ['Copilot', 'Test design', 'Process analysis', 'Review'],
+    context: 'A process-heavy reconciliation workflow required careful coverage of data, formatting, and exception scenarios.',
+    approach: 'I used Copilot to expand possible scenarios, then filtered and organized them into a practical test plan and walkthrough structure.',
+    resolutionLabel: 'Principle',
+    resolution: 'The value was not automatic output. It was a review-driven workflow where AI accelerated exploration while human judgment remained responsible for relevance and correctness.'
+  },
+  'ftp-permission-automation': {
+    slug: 'ftp-permission-automation',
+    title: 'FTP Permission Automation',
+    eyebrow: 'Early-career build · Java · Access control',
+    shortSummary: 'A small Java utility that turned a repetitive, error-prone FTP setup process into a more consistent and testable workflow.',
+    tags: ['Java', 'Automation', 'Permissions', 'Testing'],
+    context: 'FTP folder creation and access configuration required repeated command entry, creating avoidable risk from typos and permission mistakes.',
+    approach: 'I built a Java tool that converted basic input into a structured setup process rather than depending on manual command entry.',
+    resolutionLabel: 'Validation',
+    resolution: 'I used dummy accounts to verify that the resulting permissions actually matched the intended access rules.'
+  }
+};
+
+export const PAGE_VARIANTS: Record<string, PageVariant> = {
+  'general': {
+    id: 'general',
+    eyebrow: 'Selected systems work',
+    headline: 'Building clearer, more reliable ways of working.',
+    intro: 'I work across internal tools, workflow improvement, automation, and validation — especially where a real process is fragile, repetitive, or difficult to maintain.',
+    caseOrder: ['schema-sync', 'allergy-data', 'copilot-workflow', 'ftp-permission-automation']
+  },
+  'pwc': {
+    id: 'pwc',
+    eyebrow: 'Selected work for PwC',
+    headline: 'Technical delivery grounded in workflow clarity and reliable execution.',
+    intro: 'Selected examples of automation, system improvement, validation, and practical delivery in process-sensitive environments.',
+    caseOrder: ['schema-sync', 'copilot-workflow', 'allergy-data', 'ftp-permission-automation']
+  }
+};
+
+export const ABOUT_COPY = [
+  'My background sits across internal tools, support-heavy environments, workflow validation, and practical automation. I am most useful when technical work has to make sense in the real world, not only in isolation.',
+  'The pattern in my work is consistent: understand the process, identify the fragile point, improve it without adding unnecessary complexity, then validate the result carefully.'
+];
+
+export const PROFILE_DATA = {
+  experience: [
+    { title: 'RPA Junior QA Tester / Workflow Validation', company: 'KPMG via Canadian Staffing Consultants Ltd.', desc: 'QA, change validation, UAT support, test planning, and workflow review for enterprise automation.' },
+    { title: 'Programmer', company: 'St. Teresa’s Hospital', desc: 'Hospital systems, API-related logic, continuity workflows, regression testing, and internal tools.' },
+    { title: 'System Engineer Intern', company: 'Multisoft Limited', desc: 'IT support, migration procedures, backups, environment setup, and early automation tooling.' }
+  ],
+  skills: ['Workflow analysis', 'Automation', 'Validation', 'API troubleshooting', 'SQL', 'VB .NET', 'Java', 'PowerShell', 'Angular'],
+  education: 'BSc in Computer Science · City University of Hong Kong'
+};
+
+export const SITE_VERSION = {
+  version: 'v5.0.0',
+  date: '2026-07-12',
+  contentLastUpdated: '2026-07-12',
+};
+</file>
+
+<file path="src/app/core/models/site.models.ts">
+export interface CaseStudy {
+  slug: string;
+  title: string;
+  eyebrow: string;
+  shortSummary: string;
+  tags: string[];
+  context: string;
+  approach: string;
+  resolutionLabel: 'Validation' | 'Resolution' | 'Principle';
+  resolution: string;
+}
+
+export interface PageVariant {
+  id: string;
+  eyebrow: string;
+  headline: string;
+  intro: string;
+  caseOrder: string[];
+}
+
+export interface SiteSettings {
+  contactEmail: string;
+  linkedinUrl: string;
+  githubUrl: string;
+  resumeUrl: string;
+  noticeEnabled: boolean;
+  noticeMessage: string | null;
+  noticeDismissible: boolean;
+  popupEnabled: boolean;
+  popupTitle: string | null;
+  popupMessage: string | null;
+}
+</file>
+
+<file path="src/app/core/services/site-settings.service.ts">
+import { Injectable, signal } from '@angular/core';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { RUNTIME_CONFIG } from '../config/runtime-config';
+import { SiteSettings } from '../models/site.models';
+
+const DEFAULT_SETTINGS: SiteSettings = {
+  contactEmail: 'mailto:contact@example.com',
+  linkedinUrl: 'https://linkedin.com',
+  githubUrl: 'https://github.com',
+  resumeUrl: '#',
+  noticeEnabled: false,
+  noticeMessage: null,
+  noticeDismissible: true,
+  popupEnabled: false,
+  popupTitle: null,
+  popupMessage: null,
+};
+
+@Injectable({ providedIn: 'root' })
+export class SiteSettingsService {
+  private supabase: SupabaseClient | null = null;
+  public settings = signal<SiteSettings>(DEFAULT_SETTINGS);
+
+  constructor() {
+    if (RUNTIME_CONFIG.supabaseUrl && RUNTIME_CONFIG.supabaseUrl !== 'REPLACE_WITH_SUPABASE_URL') {
+      try {
+        this.supabase = createClient(RUNTIME_CONFIG.supabaseUrl, RUNTIME_CONFIG.supabaseAnonKey);
+      } catch (e) {
+        console.warn('Supabase initialization failed, using defaults.', e);
+      }
+    }
+  }
+
+  async initializeSettings(): Promise<void> {
+    if (!this.supabase) return;
+
+    try {
+      const { data, error } = await this.supabase
+        .from('tyweb_v5_settings')
+        .select('*')
+        .eq('singleton_key', 1)
+        .eq('status', 1)
+        .is('deleted_at', null)
+        .maybeSingle();
+
+      if (error || !data) {
+        console.warn('Settings query failed or no record found. Using defaults.');
+        return;
+      }
+
+      this.settings.set({
+        contactEmail: data.contact_email || DEFAULT_SETTINGS.contactEmail,
+        linkedinUrl: data.linkedin_url || DEFAULT_SETTINGS.linkedinUrl,
+        githubUrl: data.github_url || DEFAULT_SETTINGS.githubUrl,
+        resumeUrl: data.resume_url || DEFAULT_SETTINGS.resumeUrl,
+        noticeEnabled: data.notice_enabled || false,
+        noticeMessage: data.notice_message || null,
+        noticeDismissible: data.notice_dismissible !== false,
+        popupEnabled: data.popup_enabled || false,
+        popupTitle: data.popup_title || null,
+        popupMessage: data.popup_message || null,
+      });
+    } catch (e) {
+      console.warn('Exception fetching settings, using defaults.', e);
+    }
+  }
+}
+</file>
+
+<file path="src/app/core/services/theme.service.ts">
+import { Injectable, signal, effect, inject, PLATFORM_ID } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+
+@Injectable({ providedIn: 'root' })
+export class ThemeService {
+  public isDarkMode = signal<boolean>(false);
+
+  private document = inject(DOCUMENT);
+  private platformId = inject(PLATFORM_ID);
+
+  constructor() {
+    this.initTheme();
+
+    effect(() => {
+      if (isPlatformBrowser(this.platformId)) {
+        const isDark = this.isDarkMode();
+        if (isDark) {
+          this.document.documentElement.classList.add('dark-theme');
+        } else {
+          this.document.documentElement.classList.remove('dark-theme');
+        }
+      }
+    });
+  }
+
+  toggleTheme(): void {
+    this.isDarkMode.set(!this.isDarkMode());
+  }
+
+  private initTheme(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const prefersDark =
+        window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      this.isDarkMode.set(prefersDark);
+    }
+  }
+}
+</file>
+
+<file path="src/app/features/case-study.ts">
+import { Component, input, computed, inject, effect } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { CASE_STUDIES } from '../core/config/site-content.config';
+
+@Component({
+  selector: 'app-case-study',
+  standalone: true,
+  imports: [RouterLink],
+  template: `
+    <main class="case-page grid-layout">
+      <div class="back-link-wrapper">
+        <a routerLink="/" class="back-link">← Back to work</a>
+      </div>
+      @if (caseData(); as data) {
+        <article class="case-article">
+          <header class="case-header">
+            <span class="eyebrow">{{ data.eyebrow }}</span>
+            <h1 class="title">{{ data.title }}</h1>
+            <p class="summary">{{ data.shortSummary }}</p>
+            <div class="tags">
+              @for (tag of data.tags; track tag) {
+                <span class="tag">{{ tag }}</span>
+              }
+            </div>
+          </header>
+
+          <div class="logic-strip" aria-hidden="true">
+            <span class="step">Understand</span><span class="arrow">→</span>
+            <span class="step">Structure</span><span class="arrow">→</span>
+            <span class="step">Validate</span><span class="arrow">→</span>
+            <span class="step">Release</span>
+          </div>
+
+          <section class="case-body">
+            <div class="content-block">
+              <h2>Context</h2>
+              <p>{{ data.context }}</p>
+            </div>
+            <div class="content-block">
+              <h2>Approach</h2>
+              <p>{{ data.approach }}</p>
+            </div>
+            <div class="content-block">
+              <h2>{{ data.resolutionLabel }}</h2>
+              <p>{{ data.resolution }}</p>
+            </div>
+          </section>
+        </article>
+      } @else {
+        <div class="not-found">Case not found.</div>
+      }
+    </main>
+  `,
+  styles: [
+    `
+      .case-page {
+        padding: 3rem 0 6rem 0;
+      }
+      .back-link-wrapper {
+        margin-bottom: 3rem;
+      }
+      .back-link {
+        color: var(--color-text-secondary);
+        text-decoration: none;
+        font-size: 0.875rem;
+        transition: color 0.2s;
+      }
+      .back-link:hover {
+        color: var(--color-accent);
+      }
+      .case-article {
+        max-width: 48rem;
+        margin: 0 auto;
+      }
+      .case-header {
+        margin-bottom: 3rem;
+        text-align: center;
+      }
+      .eyebrow {
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--color-accent);
+        font-weight: 600;
+        display: block;
+        margin-bottom: 1rem;
+      }
+      .title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4vw, 3rem);
+        color: var(--color-text-primary);
+        margin: 0 0 1.5rem 0;
+        line-height: 1.2;
+      }
+      .summary {
+        font-size: 1.25rem;
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+        margin-bottom: 2rem;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      .tag {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.75rem;
+        border: 1px solid var(--color-border);
+        border-radius: 4px;
+        color: var(--color-text-secondary);
+      }
+
+      .logic-strip {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 1.5rem;
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 4px;
+        margin-bottom: 4rem;
+      }
+      .step {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--color-text-primary);
+        font-weight: 500;
+      }
+      .arrow {
+        color: var(--color-border);
+      }
+
+      .case-body {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+      }
+      .content-block h2 {
+        font-family: var(--font-display);
+        font-size: 1.25rem;
+        border-bottom: 1px solid var(--color-border);
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+        color: var(--color-text-primary);
+      }
+      .content-block p {
+        font-size: 1.125rem;
+        line-height: 1.7;
+        color: var(--color-text-secondary);
+      }
+    `,
+  ],
+})
+export class CaseStudyComponent {
+  slug = input<string>();
+
+  caseData = computed(() => {
+    const currentSlug = this.slug();
+    return currentSlug ? CASE_STUDIES[currentSlug] : undefined;
+  });
+
+  private titleService = inject(Title);
+
+  constructor() {
+    effect(() => {
+      const data = this.caseData();
+      if (data) {
+        this.titleService.setTitle(`${data.title} | Jack Chan`);
+      } else {
+        this.titleService.setTitle('Case Not Found | Jack Chan');
+      }
+    });
+  }
+}
+</file>
+
+<file path="src/app/features/home.html">
+<main class="home-page">
+  <section class="hero grid-layout">
+    <div class="hero-content">
+      <span class="hero-eyebrow">{{ pageVariant().eyebrow }}</span>
+      <h1 class="hero-headline">{{ pageVariant().headline }}</h1>
+      <p class="hero-intro">{{ pageVariant().intro }}</p>
+      <div class="hero-actions">
+        <a routerLink="." fragment="work" class="btn-primary">Explore selected work</a>
+      </div>
+    </div>
+    <div class="hero-label" aria-hidden="true">
+      <span>SYSTEMS / WORKFLOWS / RELIABILITY</span>
+    </div>
+  </section>
+
+  <section id="work" class="work-section grid-layout">
+    <div class="case-grid">
+      @for (c of cases(); track c.slug; let i = $index) {
+        <div [class]="i === 0 ? 'grid-full' : 'grid-half'">
+          <app-case-card [caseData]="c" [isFeatured]="i === 0"></app-case-card>
+        </div>
+      }
+    </div>
+  </section>
+
+  <section class="profile-section grid-layout">
+    <div class="profile-grid">
+      <div class="about-column">
+        <h2 class="section-title">About</h2>
+        <div class="about-text">
+          @for (p of aboutCopy; track p) {
+            <p>{{ p }}</p>
+          }
+        </div>
+      </div>
+      <div class="details-column">
+        <div class="detail-block">
+          <h2 class="section-title">Experience</h2>
+          <ul class="experience-list">
+            @for (exp of profile.experience; track exp.title) {
+              <li>
+                <strong>{{ exp.title }}</strong>
+                <span class="company">{{ exp.company }}</span>
+                <span class="desc">{{ exp.desc }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h2 class="section-title">Skills</h2>
+          <div class="skills-list">
+            @for (skill of profile.skills; track skill) {
+              <span class="skill-item">{{ skill }}</span>
+            }
+          </div>
+        </div>
+        <div class="detail-block">
+          <h2 class="section-title">Education</h2>
+          <p class="education-text">{{ profile.education }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+</file>
+
+<file path="src/app/features/home.scss">
+.home-page {
+  padding-bottom: 4rem;
+}
+
+.hero {
+  padding: 6rem 0 4rem 0;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.hero-content {
+  max-width: 48rem;
+}
+.hero-eyebrow {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+.hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
+  color: var(--color-text-primary);
+  margin: 0 0 1.5rem 0;
+}
+.hero-intro {
+  font-size: clamp(1.125rem, 2vw, 1.25rem);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  max-width: 38rem;
+  margin-bottom: 2.5rem;
+}
+.btn-primary {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-text-primary);
+  color: var(--color-bg-primary);
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: opacity 0.2s;
+}
+.btn-primary:hover {
+  opacity: 0.9;
+}
+.hero-label {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .hero-label {
+    display: block;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--color-text-secondary);
+    opacity: 0.5;
+    padding-top: 1rem;
+  }
+}
+
+.work-section {
+  padding: 4rem 0;
+}
+.case-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+@media (min-width: 768px) {
+  .case-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-full {
+    grid-column: 1 / -1;
+  }
+  .grid-half {
+    grid-column: span 1;
+  }
+}
+
+.profile-section {
+  padding: 4rem 0;
+  border-top: 1px solid var(--color-border);
+}
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+}
+@media (min-width: 768px) {
+  .profile-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+  }
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-text-primary);
+}
+.about-text p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+}
+.detail-block {
+  margin-bottom: 3rem;
+}
+.experience-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.experience-list li {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.experience-list strong {
+  color: var(--color-text-primary);
+  font-size: 1rem;
+}
+.company {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+.desc {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.skill-item {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  padding: 0.25rem 0.5rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+}
+.education-text {
+  color: var(--color-text-secondary);
+  font-size: 1rem;
+}
+</file>
+
+<file path="src/app/features/home.ts">
+import { Component, inject, input, computed } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import {
+  PAGE_VARIANTS,
+  CASE_STUDIES,
+  ABOUT_COPY,
+  PROFILE_DATA,
+} from '../core/config/site-content.config';
+import { SiteSettingsService } from '../core/services/site-settings.service';
+import { CaseCardComponent } from '../shared/components/case-card';
+
+@Component({
+  selector: 'app-home',
+  standalone: true,
+  imports: [CaseCardComponent, RouterLink],
+  templateUrl: './home.html',
+  styleUrls: ['./home.scss'],
+})
+export class HomeComponent {
+  settings = inject(SiteSettingsService).settings;
+
+  variant = input<string>('general');
+
+  pageVariant = computed(() => PAGE_VARIANTS[this.variant()]);
+  cases = computed(() => this.pageVariant().caseOrder.map((slug) => CASE_STUDIES[slug]));
+
+  aboutCopy = ABOUT_COPY;
+  profile = PROFILE_DATA;
+}
+</file>
+
+<file path="src/app/shared/components/case-card.ts">
+import { Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { CaseStudy } from '../../core/models/site.models';
+
+
+@Component({
+  selector: 'app-case-card',
+  standalone: true,
+  imports: [RouterLink],
+  template: `
+    <a [routerLink]="['/case', caseData.slug]" class="case-card" [class.featured]="isFeatured">
+      <div class="card-content">
+        <span class="eyebrow">{{ caseData.eyebrow }}</span>
+        <h3 class="title">{{ caseData.title }}</h3>
+        <p class="summary">{{ caseData.shortSummary }}</p>
+        <div class="tags">
+          @for (tag of caseData.tags; track tag) {
+            <span class="tag">{{ tag }}</span>
+          }
+        </div>
+        <div class="action-link">Read case ↗</div>
+      </div>
+    </a>
+  `,
+  styles: [
+    `
+      .case-card {
+        display: block;
+        border: 1px solid var(--color-border);
+        background: var(--color-surface);
+        border-radius: 4px;
+        padding: 2rem;
+        text-decoration: none;
+        color: inherit;
+        transition:
+          transform 0.2s ease,
+          background-color 0.2s ease;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .case-card:hover {
+        transform: translateY(-3px);
+        background: var(--color-accent-surface);
+        border-color: var(--color-accent);
+      }
+      .case-card:hover .action-link {
+        color: var(--color-accent);
+      }
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .eyebrow {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--color-text-secondary);
+        margin-bottom: 1rem;
+        display: block;
+        font-weight: 600;
+      }
+      .title {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        margin: 0 0 1rem 0;
+        color: var(--color-text-primary);
+      }
+      .summary {
+        font-size: 1rem;
+        color: var(--color-text-secondary);
+        margin-bottom: 2rem;
+        line-height: 1.5;
+        flex-grow: 1;
+      }
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+      }
+      .tag {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+        border: 1px solid var(--color-border);
+        border-radius: 2px;
+        color: var(--color-text-secondary);
+      }
+      .action-link {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: var(--color-text-primary);
+        transition: color 0.2s ease;
+      }
+      @media (min-width: 768px) {
+        .featured {
+          padding: 3rem;
+        }
+        .featured .title {
+          font-size: 2.25rem;
+        }
+        .featured .summary {
+          font-size: 1.125rem;
+          max-width: 80%;
+        }
+      }
+    `,
+  ],
+})
+export class CaseCardComponent {
+  @Input({ required: true }) caseData!: CaseStudy;
+  @Input() isFeatured = false;
+}
+</file>
+
+<file path="src/app/shared/components/notice-bar.ts">
+import { Component, inject, signal } from '@angular/core';
+import { SiteSettingsService } from '../../core/services/site-settings.service';
+
+@Component({
+  selector: 'app-notice-bar',
+  standalone: true,
+  template: `
+    @if (settings().noticeEnabled && settings().noticeMessage && !dismissed()) {
+      <div class="notice-bar">
+        <div class="notice-content">{{ settings().noticeMessage }}</div>
+        @if (settings().noticeDismissible) {
+          <button class="dismiss-btn" (click)="dismiss()" aria-label="Dismiss notice">×</button>
+        }
+      </div>
+    }
+  `,
+  styles: [
+    `
+      .notice-bar {
+        background-color: var(--color-accent);
+        color: #ffffff;
+        padding: 0.5rem 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.875rem;
+        position: relative;
+      }
+      .notice-content {
+        text-align: center;
+        font-weight: 500;
+      }
+      .dismiss-btn {
+        position: absolute;
+        right: 1rem;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.25rem;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+        opacity: 0.8;
+      }
+      .dismiss-btn:hover {
+        opacity: 1;
+      }
+    `,
+  ],
+})
+export class NoticeBarComponent {
+  settings = inject(SiteSettingsService).settings;
+  dismissed = signal(false);
+  dismiss() {
+    this.dismissed.set(true);
+  }
+}
+</file>
+
+<file path="src/app/shared/components/site-footer.ts">
+import { Component, inject } from '@angular/core';
+import { SiteSettingsService } from '../../core/services/site-settings.service';
+import { SITE_VERSION } from '../../core/config/site-content.config';
+
+@Component({
+  selector: 'app-site-footer',
+  standalone: true,
+  template: `
+    <footer class="site-footer">
+      <div class="grid-layout footer-content">
+        <div class="footer-left">
+          <h2 class="footer-heading">Open to thoughtful technical work.</h2>
+          <div class="footer-links">
+            <a
+              [href]="'mailto:' + settings().contactEmail"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Email</a
+            >
+            <a [href]="settings().linkedinUrl" target="_blank" rel="noopener noreferrer"
+              >LinkedIn</a
+            >
+            <a [href]="settings().githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a [href]="settings().resumeUrl" target="_blank" rel="noopener noreferrer">Resume</a>
+          </div>
+        </div>
+
+        <div class="footer-meta">
+          <p class="copyright">&copy; {{ currentYear }} Jack Chan. All rights reserved.</p>
+          <p class="version-info">
+            Site {{ siteVersion.version }} ({{ siteVersion.date }})
+            <span class="divider">|</span>
+            Content Updated: {{ siteVersion.contentLastUpdated }}
+          </p>
+        </div>
+      </div>
+    </footer>
+  `,
+  styles: [
+    `
+      .site-footer {
+        padding: 4rem 0;
+        border-top: 1px solid var(--color-border);
+        margin-top: 4rem;
+        background: var(--color-surface);
+      }
+      .footer-content {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+      }
+      @media (min-width: 768px) {
+        .footer-content {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: flex-end;
+        }
+      }
+      .footer-left {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .footer-heading {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        color: var(--color-text-primary);
+        margin: 0;
+      }
+      .footer-links {
+        display: flex;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+      }
+      .footer-links a {
+        color: var(--color-text-secondary);
+        font-weight: 500;
+        text-decoration: none;
+        font-size: 0.875rem;
+      }
+      .footer-links a:hover {
+        color: var(--color-accent);
+      }
+      .footer-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        color: var(--color-text-secondary);
+      }
+      @media (min-width: 768px) {
+        .footer-meta {
+          text-align: right;
+        }
+      }
+      .footer-meta p {
+        margin: 0;
+      }
+      .divider {
+        margin: 0 0.25rem;
+        opacity: 0.5;
+      }
+    `,
+  ],
+})
+export class SiteFooterComponent {
+  settings = inject(SiteSettingsService).settings;
+
+  currentYear = new Date().getFullYear();
+
+  siteVersion = SITE_VERSION;
+}
+</file>
+
+<file path="src/app/shared/components/site-header.ts">
+import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { ThemeService } from '../../core/services/theme.service';
+
+@Component({
+  selector: 'app-site-header',
+  standalone: true,
+  imports: [RouterLink],
+  template: `
+    <header class="site-header">
+      <nav class="nav-container grid-layout">
+        <a routerLink="/" class="logo">Jack Chan</a>
+        <div class="nav-actions">
+          <button (click)="theme.toggleTheme()" class="theme-toggle" aria-label="Toggle theme">
+            @if (theme.isDarkMode()) {
+              <span>Light</span>
+            } @else {
+              <span>Dark</span>
+            }
+          </button>
+        </div>
+      </nav>
+    </header>
+  `,
+  styles: [
+    `
+      .site-header {
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--color-border);
+      }
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .logo {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 1.25rem;
+        text-decoration: none;
+        color: var(--color-text-primary);
+      }
+      .theme-toggle {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        color: var(--color-text-secondary);
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-weight: 500;
+      }
+      .theme-toggle:hover {
+        color: var(--color-text-primary);
+        border-color: var(--color-text-secondary);
+      }
+    `,
+  ],
+})
+export class SiteHeaderComponent {
+  theme = inject(ThemeService);
+}
+</file>
+
+<file path=".editorconfig">
+# Editor configuration, see https://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.ts]
+quote_type = single
+ij_typescript_use_double_quotes = false
+
+[*.md]
+max_line_length = off
+trim_trailing_whitespace = false
+</file>
+
+<file path=".gitignore">
+# See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/mcp.json
+.history/*
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+__screenshots__/
+
+# System files
+.DS_Store
+Thumbs.db
+</file>
+
+<file path="angular.json">
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "cli": {
+    "packageManager": "npm"
+  },
+  "newProjectRoot": "projects",
+  "projects": {
+    "ty-web-home-v5": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:application",
+          "options": {
+            "browser": "src/main.ts",
+            "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ],
+            "styles": [
+              "src/styles.scss"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kB",
+                  "maximumError": "1MB"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "ty-web-home-v5:build:production"
+            },
+            "development": {
+              "buildTarget": "ty-web-home-v5:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test"
+        }
+      }
+    }
+  }
+}
+</file>
+
+<file path="package.json">
+{
+  "name": "ty-web-home-v5",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
+  "packageManager": "npm@11.4.2",
+  "dependencies": {
+    "@angular/common": "^21.1.0",
+    "@angular/compiler": "^21.1.0",
+    "@angular/core": "^21.1.0",
+    "@angular/forms": "^21.1.0",
+    "@angular/platform-browser": "^21.1.0",
+    "@angular/router": "^21.1.0",
+    "@supabase/supabase-js": "^2.110.2",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^21.1.4",
+    "@angular/cli": "^21.1.4",
+    "@angular/compiler-cli": "^21.1.0",
+    "jsdom": "^27.1.0",
+    "typescript": "~5.9.2",
+    "vitest": "^4.0.8"
+  }
+}
+</file>
+
+<file path="README.md">
+# TyWebHomeV5
+
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
+
+## Development server
+
+To start a local development server, run:
+
+```bash
+ng serve
+```
+
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+
+## Code scaffolding
+
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+
+```bash
+ng generate component component-name
+```
+
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+
+```bash
+ng generate --help
+```
+
+## Building
+
+To build the project run:
+
+```bash
+ng build
+```
+
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+## Running unit tests
+
+To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+
+```bash
+ng test
+```
+
+## Running end-to-end tests
+
+For end-to-end (e2e) testing, run:
+
+```bash
+ng e2e
+```
+
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Additional Resources
+
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+</file>
+
+<file path="src/app/app.config.ts">
+import {
+  APP_INITIALIZER,
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+} from '@angular/core';
+import { provideRouter, withInMemoryScrolling, withComponentInputBinding } from '@angular/router';
+
+import { routes } from './app.routes';
+import { SiteSettingsService } from './core/services/site-settings.service';
+
+export function initializeSettings(settingsService: SiteSettingsService) {
+  return () => settingsService.initializeSettings();
+}
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    provideRouter(
+      routes,
+      withInMemoryScrolling({
+        scrollPositionRestoration: 'top',
+        anchorScrolling: 'enabled',
+      }),
+      withComponentInputBinding(),
+    ),
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeSettings,
+      deps: [SiteSettingsService],
+      multi: true,
+    },
+  ],
+};
+</file>
+
+<file path="src/app/app.html">
+<app-notice-bar></app-notice-bar>
+<app-site-header></app-site-header>
+<router-outlet></router-outlet>
+<app-site-footer></app-site-footer>
+</file>
+
+<file path="src/app/app.routes.ts">
+import { Routes } from '@angular/router';
+
+export const routes: Routes = [
+  {
+    path: '',
+    loadComponent: () => import('./features/home').then((m) => m.HomeComponent),
+    data: { variant: 'general' },
+  },
+  {
+    path: 'pwc',
+    loadComponent: () => import('./features/home').then((m) => m.HomeComponent),
+    data: { variant: 'pwc' },
+  },
+  {
+    path: 'case/:slug',
+    loadComponent: () =>
+      import('./features/case-study').then((m) => m.CaseStudyComponent),
+  },
+  { path: '**', redirectTo: '' },
+];
+</file>
+
+<file path="src/app/app.scss">
+
+</file>
+
+<file path="src/app/app.ts">
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { NoticeBarComponent } from './shared/components/notice-bar';
+import { SiteFooterComponent } from './shared/components/site-footer';
+import { SiteHeaderComponent } from './shared/components/site-header';
+
+@Component({
+  selector: 'app-root',
+  imports: [RouterOutlet, SiteHeaderComponent, SiteFooterComponent, NoticeBarComponent],
+  templateUrl: './app.html',
+  styleUrl: './app.scss',
+})
+export class App {}
+</file>
+
+<file path="src/index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Jack Chan | Systems & Workflows</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700&f[]=satoshi@400,500,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
+</html>
+</file>
+
+<file path="src/main.ts">
+import { bootstrapApplication } from '@angular/platform-browser';
+import { appConfig } from './app/app.config';
+import { App } from './app/app';
+
+bootstrapApplication(App, appConfig)
+  .catch((err) => console.error(err));
+</file>
+
+<file path="src/styles.scss">
+:root {
+  --font-display: 'Cabinet Grotesk', system-ui, sans-serif;
+  --font-body: 'Satoshi', system-ui, sans-serif;
+
+  --color-bg-primary: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-text-primary: #1a1c20;
+  --color-text-secondary: #5c6270;
+  --color-border: #e0e4eb;
+  --color-accent: #4a6685;
+  --color-accent-surface: #eef2f6;
+}
+
+:root.dark-theme {
+  --color-bg-primary: #0f1218;
+  --color-surface: #161a22;
+  --color-text-primary: #e6e8ec;
+  --color-text-secondary: #9097a8;
+  --color-border: #2d3340;
+  --color-accent: #6c8cae;
+  --color-accent-surface: #1c2431;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.grid-layout {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</file>
+
+<file path="start.bat">
+code .
+</file>
+
+<file path="tsconfig.app.json">
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": []
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "src/**/*.spec.ts"
+  ]
+}
+</file>
+
+<file path="tsconfig.json">
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "preserve"
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
+    }
+  ]
+}
+</file>
+
+<file path="tsconfig.spec.json">
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/spec",
+    "types": [
+      "vitest/globals"
+    ]
+  },
+  "include": [
+    "src/**/*.d.ts",
+    "src/**/*.spec.ts"
+  ]
+}
+</file>
+
+</files>
