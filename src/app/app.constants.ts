@@ -4,10 +4,10 @@ export const APP_CONFIG = {
   appName: 'Portfolio - Under Maintenance',
   version: {
     major: 5,
-    minor: 0,
+    minor: 1,
     patch: 0,
   },
-  versionDate: '2026-07-13',
+  versionDate: '2026-07-14',
   contentLastUpdated: '2026-07-13',
 };
 
