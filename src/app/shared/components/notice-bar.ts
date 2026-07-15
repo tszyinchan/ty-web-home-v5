@@ -1,4 +1,5 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { SiteSettingsService } from '../../core/services/site-settings.service';
 
 @Component({
@@ -52,6 +53,8 @@ export class NoticeBar {
   settings = inject(SiteSettingsService).settings;
   dismissed = signal(true);
 
+  private platformId = inject(PLATFORM_ID);
+
   constructor() {
     effect(
       () => {
@@ -59,8 +62,16 @@ export class NoticeBar {
         const isEnabled = this.settings().noticeEnabled;
 
         if (isEnabled && currentNotice) {
-          const savedNotice = localStorage.getItem('tyweb_dismissed_notice');
-          if (savedNotice !== currentNotice) {
+          let shouldShow = true;
+
+          if (isPlatformBrowser(this.platformId)) {
+            const savedNotice = localStorage.getItem('tyweb_dismissed_notice');
+            if (savedNotice === currentNotice) {
+              shouldShow = false;
+            }
+          }
+
+          if (shouldShow) {
             this.dismissed.set(false);
           }
         }
@@ -72,7 +83,7 @@ export class NoticeBar {
   dismiss() {
     this.dismissed.set(true);
     const currentNotice = this.settings().noticeMessage;
-    if (currentNotice) {
+    if (currentNotice && isPlatformBrowser(this.platformId)) {
       localStorage.setItem('tyweb_dismissed_notice', currentNotice);
     }
   }

@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ThemeService } from '../../core/services/theme.service';
+import { APP_CONFIG } from '../../app.constants';
 
 @Component({
   selector: 'app-site-header',
@@ -9,7 +10,8 @@ import { ThemeService } from '../../core/services/theme.service';
   template: `
     <header class="site-header">
       <nav class="nav-container grid-layout">
-        <a routerLink="/" class="logo">Jack Chan</a>
+        <!-- 👇 改為動態讀取 ownerName -->
+        <a routerLink="/" class="logo">{{ appConfig.ownerName }}</a>
         <div class="nav-actions">
           <button (click)="theme.toggleTheme()" class="theme-toggle" aria-label="Toggle theme">
             @if (theme.isDarkMode()) {
@@ -61,4 +63,5 @@ import { ThemeService } from '../../core/services/theme.service';
 })
 export class SiteHeader {
   theme = inject(ThemeService);
+  appConfig = APP_CONFIG;
 }

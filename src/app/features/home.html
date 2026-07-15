@@ -6,11 +6,11 @@
         <h1 class="hero-headline">{{ pageVariant().headline }}</h1>
         <p class="hero-intro">{{ pageVariant().intro }}</p>
         <div class="hero-actions">
-          <a routerLink="." fragment="work" class="btn-primary">Explore selected work</a>
+          <a routerLink="." fragment="work" class="btn-primary">{{ uiCopy.home.exploreBtn }}</a>
         </div>
       </div>
       <div class="hero-label" aria-hidden="true">
-        <span>SYSTEMS / WORKFLOWS / RELIABILITY</span>
+        <span>{{ uiCopy.home.heroLabel }}</span>
       </div>
     </div>
   </section>
@@ -31,7 +31,7 @@
     <div class="grid-layout">
       <div class="profile-grid">
         <div class="about-column">
-          <h2 class="section-title">About</h2>
+          <h2 class="section-title">{{ uiCopy.home.aboutTitle }}</h2>
           <div class="about-text">
             @for (p of aboutCopy; track p) {
               <p>{{ p }}</p>
@@ -40,7 +40,7 @@
         </div>
         <div class="details-column">
           <div class="detail-block">
-            <h2 class="section-title">Experience</h2>
+            <h2 class="section-title">{{ uiCopy.home.experienceTitle }}</h2>
             <ul class="experience-list">
               @for (exp of profile.experience; track exp.title) {
                 <li>
@@ -52,7 +52,7 @@
             </ul>
           </div>
           <div class="detail-block">
-            <h2 class="section-title">Skills</h2>
+            <h2 class="section-title">{{ uiCopy.home.skillsTitle }}</h2>
             <div class="skills-list">
               @for (skill of profile.skills; track skill) {
                 <span class="skill-item">{{ skill }}</span>
@@ -60,7 +60,7 @@
             </div>
           </div>
           <div class="detail-block">
-            <h2 class="section-title">Education</h2>
+            <h2 class="section-title">{{ uiCopy.home.educationTitle }}</h2>
             <p class="education-text">{{ profile.education }}</p>
           </div>
         </div>

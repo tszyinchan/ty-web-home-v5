@@ -1,4 +1,5 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { SiteSettingsService } from '../../core/services/site-settings.service';
 
 @Component({
@@ -90,15 +91,23 @@ export class SitePopup implements OnInit {
   settings = inject(SiteSettingsService).settings;
   dismissed = signal(true);
 
+  private platformId = inject(PLATFORM_ID);
+
   ngOnInit() {
-    const hasSeenPopup = localStorage.getItem('tyweb_popup_dismissed');
-    if (!hasSeenPopup) {
+    if (isPlatformBrowser(this.platformId)) {
+      const hasSeenPopup = localStorage.getItem('tyweb_popup_dismissed');
+      if (!hasSeenPopup) {
+        this.dismissed.set(false);
+      }
+    } else {
       this.dismissed.set(false);
     }
   }
 
   dismiss() {
     this.dismissed.set(true);
-    localStorage.setItem('tyweb_popup_dismissed', 'true');
+    if (isPlatformBrowser(this.platformId)) {
+      localStorage.setItem('tyweb_popup_dismissed', 'true');
+    }
   }
 }

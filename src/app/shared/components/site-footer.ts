@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { SiteSettingsService } from '../../core/services/site-settings.service';
-import { APP_CONFIG } from '../../app.constants';
+import { APP_CONFIG, UI_COPY } from '../../app.constants';
 
 @Component({
   selector: 'app-site-footer',
@@ -9,7 +9,8 @@ import { APP_CONFIG } from '../../app.constants';
     <footer class="site-footer">
       <div class="grid-layout footer-content">
         <div class="footer-left">
-          <h2 class="footer-heading">Open to thoughtful technical work.</h2>
+          <!-- 👇 改用動態變數 -->
+          <h2 class="footer-heading">{{ uiCopy.footer.heading }}</h2>
           <div class="footer-links">
             @if (settings().contactEmail) {
               <a
@@ -34,9 +35,14 @@ import { APP_CONFIG } from '../../app.constants';
         </div>
 
         <div class="footer-meta">
-          <p class="copyright">&copy; {{ currentYear }} {{ appConfig.ownerName }}. All rights reserved.</p>
+          <p class="copyright">
+            &copy; {{ currentYear }} {{ appConfig.ownerName }}. All rights reserved.
+          </p>
           <p class="version-info">
-            Site v{{ appConfig.version.major }}.{{ appConfig.version.minor }}.{{ appConfig.version.patch }} ({{ appConfig.versionDate }})
+            Site v{{ appConfig.version.major }}.{{ appConfig.version.minor }}.{{
+              appConfig.version.patch
+            }}
+            ({{ appConfig.versionDate }})
             <span class="divider">|</span>
             Content Updated: {{ appConfig.contentLastUpdated }}
           </p>
@@ -117,4 +123,6 @@ export class SiteFooter {
   currentYear = new Date().getFullYear();
 
   appConfig = APP_CONFIG;
+
+  uiCopy = UI_COPY;
 }

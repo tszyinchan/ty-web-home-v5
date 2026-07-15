@@ -2,11 +2,11 @@ import { CaseStudy, PageVariant } from './core/models/site.models';
 
 export const APP_CONFIG = {
   appName: 'Portfolio - Under Maintenance',
-  ownerName: 'Jack Chan',
+  ownerName: 'Tsz Yin Chan',
   version: {
     major: 5,
     minor: 2,
-    patch: 0,
+    patch: 1,
   },
   versionDate: '2026-07-14',
   contentLastUpdated: '2026-07-13',
@@ -205,5 +205,28 @@ export const PAGE_VARIANTS: Record<string, PageVariant> = {
     headline: 'Site Under Maintenance',
     intro: 'This specific portfolio view is currently under maintenance.',
     caseOrder: ['schema-sync', 'copilot-workflow', 'allergy-data', 'ftp-permission-automation']
+  }
+};
+
+export const UI_COPY = {
+  home: {
+    heroLabel: 'SYSTEMS / WORKFLOWS / RELIABILITY',
+    exploreBtn: 'Explore selected work',
+    aboutTitle: 'About',
+    experienceTitle: 'Experience',
+    skillsTitle: 'Skills',
+    educationTitle: 'Education',
+  },
+  caseStudy: {
+    backBtn: '← Back to work',
+    logicStrip: ['Understand', 'Structure', 'Validate', 'Release'],
+    contextTitle: 'Context',
+    approachTitle: 'Approach',
+    notFoundTitle: 'Case Not Found',
+    notFoundDesc: 'The project you are looking for does not exist or has been removed.',
+    returnHomeBtn: 'Return to Homepage'
+  },
+  footer: {
+    heading: 'Open to thoughtful technical work.',
   }
 };

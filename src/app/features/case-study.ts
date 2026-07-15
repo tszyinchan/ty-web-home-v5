@@ -1,7 +1,7 @@
 import { Component, input, computed, inject, effect } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { CASE_STUDIES } from '../app.constants';
+import { APP_CONFIG, CASE_STUDIES, UI_COPY } from '../app.constants';
 
 @Component({
   selector: 'app-case-study',
@@ -10,7 +10,8 @@ import { CASE_STUDIES } from '../app.constants';
   template: `
     <main class="case-page grid-layout">
       <div class="back-link-wrapper">
-        <a routerLink="/" class="back-link">← Back to work</a>
+        <!-- 👇 改用動態變數 -->
+        <a routerLink="/" class="back-link">{{ uiCopy.caseStudy.backBtn }}</a>
       </div>
       @if (caseData(); as data) {
         <article class="case-article">
@@ -26,19 +27,24 @@ import { CASE_STUDIES } from '../app.constants';
           </header>
 
           <div class="logic-strip" aria-hidden="true">
-            <span class="step">Understand</span><span class="arrow">→</span>
-            <span class="step">Structure</span><span class="arrow">→</span>
-            <span class="step">Validate</span><span class="arrow">→</span>
-            <span class="step">Release</span>
+            <!-- 👇 使用 @for 迴圈來渲染陣列與箭頭，超級 DRY！ -->
+            @for (step of uiCopy.caseStudy.logicStrip; track step; let last = $last) {
+              <span class="step">{{ step }}</span>
+              @if (!last) {
+                <span class="arrow">→</span>
+              }
+            }
           </div>
 
           <section class="case-body">
             <div class="content-block">
-              <h2>Context</h2>
+              <!-- 👇 改用動態變數 -->
+              <h2>{{ uiCopy.caseStudy.contextTitle }}</h2>
               <p>{{ data.context }}</p>
             </div>
             <div class="content-block">
-              <h2>Approach</h2>
+              <!-- 👇 改用動態變數 -->
+              <h2>{{ uiCopy.caseStudy.approachTitle }}</h2>
               <p>{{ data.approach }}</p>
             </div>
             <div class="content-block">
@@ -49,21 +55,22 @@ import { CASE_STUDIES } from '../app.constants';
         </article>
       } @else {
         <div class="not-found" style="text-align: center; padding: 6rem 0;">
+          <!-- 👇 改用動態變數 -->
           <h2
             style="font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 1rem; color: var(--color-text-primary);"
           >
-            Case Not Found
+            {{ uiCopy.caseStudy.notFoundTitle }}
           </h2>
           <p
             style="color: var(--color-text-secondary); margin-bottom: 2.5rem; font-size: 1.125rem;"
           >
-            The project you are looking for does not exist or has been removed.
+            {{ uiCopy.caseStudy.notFoundDesc }}
           </p>
           <a
             routerLink="/"
             style="display: inline-block; padding: 0.75rem 1.5rem; background: var(--color-text-primary); color: var(--color-bg-primary); text-decoration: none; border-radius: 4px; font-weight: 500; transition: opacity 0.2s;"
           >
-            Return to Homepage
+            {{ uiCopy.caseStudy.returnHomeBtn }}
           </a>
         </div>
       }
@@ -178,6 +185,8 @@ import { CASE_STUDIES } from '../app.constants';
 })
 export class CaseStudy {
   slug = input<string>();
+  uiCopy = UI_COPY;
+  appConfig = APP_CONFIG;
 
   caseData = computed(() => {
     const currentSlug = this.slug();
@@ -190,9 +199,11 @@ export class CaseStudy {
     effect(() => {
       const data = this.caseData();
       if (data) {
-        this.titleService.setTitle(`${data.title} | Jack Chan`);
+        this.titleService.setTitle(`${data.title} | ${this.appConfig.ownerName}`);
       } else {
-        this.titleService.setTitle('Case Not Found | Jack Chan');
+        this.titleService.setTitle(
+          `${this.uiCopy.caseStudy.notFoundTitle} | ${this.appConfig.ownerName}`,
+        );
       }
     });
   }
