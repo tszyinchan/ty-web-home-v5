@@ -7,9 +7,9 @@ export const routes: Routes = [
     data: { variant: 'general' },
   },
   {
-    path: 'pwc',
+    path: 'XXX',
     loadComponent: () => import('./features/home').then((m) => m.Home),
-    data: { variant: 'pwc' },
+    data: { variant: 'XXX' },
   },
   {
     path: 'case/:slug',

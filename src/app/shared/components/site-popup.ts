@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { SiteSettingsService } from '../../core/services/site-settings.service';
 
 @Component({
@@ -86,11 +86,19 @@ import { SiteSettingsService } from '../../core/services/site-settings.service';
     `,
   ],
 })
-export class SitePopupComponent {
+export class SitePopup implements OnInit {
   settings = inject(SiteSettingsService).settings;
-  dismissed = signal(false);
+  dismissed = signal(true);
+
+  ngOnInit() {
+    const hasSeenPopup = localStorage.getItem('tyweb_popup_dismissed');
+    if (!hasSeenPopup) {
+      this.dismissed.set(false);
+    }
+  }
 
   dismiss() {
     this.dismissed.set(true);
+    localStorage.setItem('tyweb_popup_dismissed', 'true');
   }
 }

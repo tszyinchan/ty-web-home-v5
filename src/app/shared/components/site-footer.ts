@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { SiteSettingsService } from '../../core/services/site-settings.service';
 import { APP_CONFIG } from '../../app.constants';
 
-
 @Component({
   selector: 'app-site-footer',
   standalone: true,
@@ -12,15 +11,30 @@ import { APP_CONFIG } from '../../app.constants';
         <div class="footer-left">
           <h2 class="footer-heading">Open to thoughtful technical work.</h2>
           <div class="footer-links">
-            <a [href]="'mailto:' + settings().contactEmail" target="_blank" rel="noopener noreferrer">Email</a>
-            <a [href]="settings().linkedinUrl" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a [href]="settings().githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a [href]="settings().resumeUrl" target="_blank" rel="noopener noreferrer">Resume</a>
+            @if (settings().contactEmail) {
+              <a
+                [href]="'mailto:' + settings().contactEmail"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Email</a
+              >
+            }
+            @if (settings().linkedinUrl) {
+              <a [href]="settings().linkedinUrl" target="_blank" rel="noopener noreferrer"
+                >LinkedIn</a
+              >
+            }
+            @if (settings().githubUrl) {
+              <a [href]="settings().githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
+            }
+            @if (settings().resumeUrl) {
+              <a [href]="settings().resumeUrl" target="_blank" rel="noopener noreferrer">Resume</a>
+            }
           </div>
         </div>
 
         <div class="footer-meta">
-          <p class="copyright">&copy; {{ currentYear }} Jack Chan. All rights reserved.</p>
+          <p class="copyright">&copy; {{ currentYear }} {{ appConfig.ownerName }}. All rights reserved.</p>
           <p class="version-info">
             Site v{{ appConfig.version.major }}.{{ appConfig.version.minor }}.{{ appConfig.version.patch }} ({{ appConfig.versionDate }})
             <span class="divider">|</span>
@@ -97,7 +111,7 @@ import { APP_CONFIG } from '../../app.constants';
     `,
   ],
 })
-export class SiteFooterComponent {
+export class SiteFooter {
   settings = inject(SiteSettingsService).settings;
 
   currentYear = new Date().getFullYear();

@@ -2,9 +2,10 @@ import { CaseStudy, PageVariant } from './core/models/site.models';
 
 export const APP_CONFIG = {
   appName: 'Portfolio - Under Maintenance',
+  ownerName: 'Jack Chan',
   version: {
     major: 5,
-    minor: 1,
+    minor: 2,
     patch: 0,
   },
   versionDate: '2026-07-14',

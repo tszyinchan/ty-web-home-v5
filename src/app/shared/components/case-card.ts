@@ -108,7 +108,7 @@ import { CaseStudy } from '../../core/models/site.models';
     `,
   ],
 })
-export class CaseCardComponent {
+export class CaseCard {
   @Input({ required: true }) caseData!: CaseStudy;
   @Input() isFeatured = false;
 }

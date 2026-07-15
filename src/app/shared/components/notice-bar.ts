@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { SiteSettingsService } from '../../core/services/site-settings.service';
 
 @Component({
@@ -48,10 +48,32 @@ import { SiteSettingsService } from '../../core/services/site-settings.service';
     `,
   ],
 })
-export class NoticeBarComponent {
+export class NoticeBar {
   settings = inject(SiteSettingsService).settings;
-  dismissed = signal(false);
+  dismissed = signal(true);
+
+  constructor() {
+    effect(
+      () => {
+        const currentNotice = this.settings().noticeMessage;
+        const isEnabled = this.settings().noticeEnabled;
+
+        if (isEnabled && currentNotice) {
+          const savedNotice = localStorage.getItem('tyweb_dismissed_notice');
+          if (savedNotice !== currentNotice) {
+            this.dismissed.set(false);
+          }
+        }
+      },
+      { allowSignalWrites: true },
+    );
+  }
+
   dismiss() {
     this.dismissed.set(true);
+    const currentNotice = this.settings().noticeMessage;
+    if (currentNotice) {
+      localStorage.setItem('tyweb_dismissed_notice', currentNotice);
+    }
   }
 }

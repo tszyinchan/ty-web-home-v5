@@ -59,6 +59,6 @@ import { ThemeService } from '../../core/services/theme.service';
     `,
   ],
 })
-export class SiteHeaderComponent {
+export class SiteHeader {
   theme = inject(ThemeService);
 }

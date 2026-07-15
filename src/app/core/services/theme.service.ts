@@ -7,6 +7,7 @@ export class ThemeService {
 
   private document = inject(DOCUMENT);
   private platformId = inject(PLATFORM_ID);
+  private readonly STORAGE_KEY = 'tyweb_theme_pref';
 
   constructor() {
     this.initTheme();
@@ -16,8 +17,10 @@ export class ThemeService {
         const isDark = this.isDarkMode();
         if (isDark) {
           this.document.documentElement.classList.add('dark-theme');
+          localStorage.setItem(this.STORAGE_KEY, 'dark');
         } else {
           this.document.documentElement.classList.remove('dark-theme');
+          localStorage.setItem(this.STORAGE_KEY, 'light');
         }
       }
     });
@@ -29,9 +32,20 @@ export class ThemeService {
 
   private initTheme(): void {
     if (isPlatformBrowser(this.platformId)) {
-      const prefersDark =
-        window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      this.isDarkMode.set(prefersDark);
+      const savedTheme = localStorage.getItem(this.STORAGE_KEY);
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+      if (savedTheme) {
+        this.isDarkMode.set(savedTheme === 'dark');
+      } else {
+        this.isDarkMode.set(mediaQuery.matches);
+      }
+
+      mediaQuery.addEventListener('change', (e) => {
+        if (!localStorage.getItem(this.STORAGE_KEY)) {
+          this.isDarkMode.set(e.matches);
+        }
+      });
     }
   }
 }

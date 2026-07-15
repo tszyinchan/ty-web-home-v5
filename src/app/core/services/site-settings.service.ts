@@ -3,10 +3,10 @@ import { SupabaseService } from './supabase.service';
 import { SiteSettings } from '../models/site.models';
 
 const DEFAULT_SETTINGS: SiteSettings = {
-  contactEmail: 'mailto:contact@example.com',
-  linkedinUrl: 'https://linkedin.com',
-  githubUrl: 'https://github.com',
-  resumeUrl: '#',
+  contactEmail: '',
+  linkedinUrl: '',
+  githubUrl: '',
+  resumeUrl: '',
   noticeEnabled: false,
   noticeMessage: null,
   noticeDismissible: true,

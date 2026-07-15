@@ -48,14 +48,33 @@ import { CASE_STUDIES } from '../app.constants';
           </section>
         </article>
       } @else {
-        <div class="not-found">Case not found.</div>
+        <div class="not-found" style="text-align: center; padding: 6rem 0;">
+          <h2
+            style="font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 1rem; color: var(--color-text-primary);"
+          >
+            Case Not Found
+          </h2>
+          <p
+            style="color: var(--color-text-secondary); margin-bottom: 2.5rem; font-size: 1.125rem;"
+          >
+            The project you are looking for does not exist or has been removed.
+          </p>
+          <a
+            routerLink="/"
+            style="display: inline-block; padding: 0.75rem 1.5rem; background: var(--color-text-primary); color: var(--color-bg-primary); text-decoration: none; border-radius: 4px; font-weight: 500; transition: opacity 0.2s;"
+          >
+            Return to Homepage
+          </a>
+        </div>
       }
     </main>
   `,
   styles: [
     `
       .case-page {
-        padding: 3rem 0 6rem 0;
+        /* 👇 修正：拆分 padding，保留 grid-layout 的左右留白 */
+        padding-top: 3rem;
+        padding-bottom: 6rem;
       }
       .back-link-wrapper {
         margin-bottom: 3rem;
