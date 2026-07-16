@@ -6,7 +6,7 @@ import { APP_CONFIG, UI_COPY } from '../../app.constants';
   selector: 'app-site-footer',
   standalone: true,
   template: `
-    <footer class="site-footer">
+    <footer id="contact" class="site-footer">
       <div class="grid-layout footer-content">
         <div class="footer-left">
           <!-- 👇 改用動態變數 -->

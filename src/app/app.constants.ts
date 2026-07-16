@@ -1,211 +1,139 @@
 import { CaseStudy, PageVariant } from './core/models/site.models';
 
 export const APP_CONFIG = {
-  appName: 'Portfolio - Under Maintenance',
+  appName: 'Tsz Yin Chan | Systems, Workflows & Reliability',
   ownerName: 'Tsz Yin Chan',
   version: {
     major: 5,
-    minor: 2,
-    patch: 1,
+    minor: 3,
+    patch: 0,
   },
-  versionDate: '2026-07-14',
-  contentLastUpdated: '2026-07-13',
+  versionDate: '2026-07-15',
+  contentLastUpdated: '2026-07-15',
 };
 
-// export const ABOUT_COPY = [
-//   '🚧 This website is currently under maintenance. Content is being updated. 🚧',
-//   'Please check back soon for the complete experience!',
-// ];
-
-// export const PROFILE_DATA = {
-//   experience: [
-//     {
-//       title: 'RPA Junior QA Tester / Workflow Validation',
-//       company: 'KPMG via Canadian Staffing Consultants Ltd.',
-//       desc: 'QA, change validation, UAT support, test planning, and workflow review for enterprise automation.',
-//     },
-//     {
-//       title: 'Programmer',
-//       company: 'St. Teresa’s Hospital',
-//       desc: 'Hospital systems, API-related logic, continuity workflows, regression testing, and internal tools.',
-//     },
-//     {
-//       title: 'System Engineer Intern',
-//       company: 'Multisoft Limited',
-//       desc: 'IT support, migration procedures, backups, environment setup, and early automation tooling.',
-//     },
-//   ],
-//   skills: [
-//     'Workflow analysis',
-//     'Automation',
-//     'Validation',
-//     'API troubleshooting',
-//     'SQL',
-//     'VB .NET',
-//     'Java',
-//     'PowerShell',
-//     'Angular',
-//   ],
-//   education: 'BSc in Computer Science · City University of Hong Kong',
-// };
-
-// export const CASE_STUDIES: Record<string, CaseStudy> = {
-//   'schema-sync': {
-//     slug: 'schema-sync',
-//     title: 'Schema Synchronization Automation',
-//     eyebrow: 'Hospital systems · VB .NET · SQL',
-//     shortSummary:
-//       'A scheduled tool designed to reduce schema drift between central and local environments, supporting a more reliable downtime workflow.',
-//     tags: ['VB .NET', 'SQL', 'Automation', 'Validation'],
-//     context:
-//       'A local pharmacy environment could fall behind the central database structure. During a server outage, that mismatch could limit the ability to use the current system version.',
-//     approach:
-//       'I built a console application that compared schema metadata, generated the required update logic, synchronized selected data, and ran during low-risk periods through a scheduler.',
-//     resolutionLabel: 'Validation',
-//     resolution:
-//       'I planned failure scenarios and post-sync checks so the solution was evaluated for operational reliability, not only whether a script could run once.',
-//   },
-//   'allergy-data': {
-//     slug: 'allergy-data',
-//     title: 'Allergy Data Optimization & Bug Resolution',
-//     eyebrow: 'Clinical workflow · API · Debugging',
-//     shortSummary:
-//       'Improving a slow allergy-information workflow while tracing and correcting a data-update issue in the underlying API behavior.',
-//     tags: ['API', 'Performance', 'Regression testing', 'VB .NET'],
-//     context:
-//       'Clinical users experienced slow access to allergy information, while the existing update logic did not fully reflect deletion-type changes.',
-//     approach:
-//       'I designed a clearer in-application display, included hospital-specific food-allergy information, and packaged shared logic for reuse across systems.',
-//     resolutionLabel: 'Resolution',
-//     resolution:
-//       'By tracing the API data flow, I identified an endpoint limitation and revised the retrieval approach. Regression checks followed before release.',
-//   },
-//   'copilot-workflow': {
-//     slug: 'copilot-workflow',
-//     title: 'Copilot-Assisted Workflow Design',
-//     eyebrow: 'AI workflow · Test design · Review boundaries',
-//     shortSummary:
-//       'Using AI to broaden test-scenario thinking while keeping judgment, filtering, and final validation with the reviewer.',
-//     tags: ['Copilot', 'Test design', 'Process analysis', 'Review'],
-//     context:
-//       'A process-heavy reconciliation workflow required careful coverage of data, formatting, and exception scenarios.',
-//     approach:
-//       'I used Copilot to expand possible scenarios, then filtered and organized them into a practical test plan and walkthrough structure.',
-//     resolutionLabel: 'Principle',
-//     resolution:
-//       'The value was not automatic output. It was a review-driven workflow where AI accelerated exploration while human judgment remained responsible for relevance and correctness.',
-//   },
-//   'ftp-permission-automation': {
-//     slug: 'ftp-permission-automation',
-//     title: 'FTP Permission Automation',
-//     eyebrow: 'Early-career build · Java · Access control',
-//     shortSummary:
-//       'A small Java utility that turned a repetitive, error-prone FTP setup process into a more consistent and testable workflow.',
-//     tags: ['Java', 'Automation', 'Permissions', 'Testing'],
-//     context:
-//       'FTP folder creation and access configuration required repeated command entry, creating avoidable risk from typos and permission mistakes.',
-//     approach:
-//       'I built a Java tool that converted basic input into a structured setup process rather than depending on manual command entry.',
-//     resolutionLabel: 'Validation',
-//     resolution:
-//       'I used dummy accounts to verify that the resulting permissions actually matched the intended access rules.',
-//   },
-// };
-
-// export const PAGE_VARIANTS: Record<string, PageVariant> = {
-//   general: {
-//     id: 'general',
-//     eyebrow: 'Selected systems work',
-//     headline: 'Building clearer, more reliable ways of working.',
-//     intro:
-//       'I work across internal tools, workflow improvement, automation, and validation — especially where a real process is fragile, repetitive, or difficult to maintain.',
-//     caseOrder: ['schema-sync', 'allergy-data', 'copilot-workflow', 'ftp-permission-automation'],
-//   },
-//   pwc: {
-//     id: 'pwc',
-//     eyebrow: 'Selected work for PwC',
-//     headline: 'Technical delivery grounded in workflow clarity and reliable execution.',
-//     intro:
-//       'Selected examples of automation, system improvement, validation, and practical delivery in process-sensitive environments.',
-//     caseOrder: ['schema-sync', 'copilot-workflow', 'allergy-data', 'ftp-permission-automation'],
-//   },
-// };
-
 export const ABOUT_COPY = [
-  '🚧 This website is currently under maintenance. Content is being updated. 🚧',
-  'Please check back soon for the complete experience!'
+  'I work on the practical side of software delivery: understanding how a real process works, identifying where it can fail, and helping turn that understanding into clearer tools, test coverage, or automation.',
+  'My experience spans internal systems, workflow validation, API-related troubleshooting, and small automation builds. I value solutions that are not only functional, but also understandable, testable, and maintainable by the people who rely on them.',
 ];
 
 export const PROFILE_DATA = {
   experience: [
-    { title: '[Title Pending]', company: '[Company Pending]', desc: 'Experience details are currently hidden during maintenance.' }
+    {
+      title: 'QA Tester, RPA Team',
+      company: 'KPMG Canada · Contract',
+      desc: 'Supports test planning, workflow review, change validation, and UAT-oriented delivery for enterprise automation processes.',
+    },
+    {
+      title: 'Programmer',
+      company: 'St. Teresa’s Hospital',
+      desc: 'Worked on hospital systems, internal tools, API-related troubleshooting, regression checks, and continuity-focused workflow improvements.',
+    },
+    {
+      title: 'System Engineer Intern',
+      company: 'Multisoft Limited',
+      desc: 'Supported environment setup, migration procedures, backups, IT operations, and early automation tooling.',
+    },
   ],
-  skills: ['[Skill 1]', '[Skill 2]', '[Skill 3]'],
-  education: '[Education details temporarily hidden]'
+  skills: [
+    'Workflow analysis',
+    'Automation',
+    'Validation & UAT support',
+    'Test design',
+    'API troubleshooting',
+    'SQL',
+    'VB .NET',
+    'Java',
+    'PowerShell',
+    'Angular',
+  ],
+  education: 'BSc in Computer Science · City University of Hong Kong',
 };
 
 export const CASE_STUDIES: Record<string, CaseStudy> = {
   'schema-sync': {
     slug: 'schema-sync',
-    title: 'Project Title Hidden',
-    eyebrow: 'Category · Technology',
-    shortSummary: 'Project summary is currently under maintenance.',
-    tags: ['Pending'],
-    context: 'Data temporarily redacted.',
-    approach: 'Data temporarily redacted.',
+    title: 'Schema Synchronization Automation',
+    eyebrow: 'Hospital systems · VB .NET · SQL',
+    shortSummary:
+      'A scheduled synchronization tool designed to reduce schema drift between central and local environments and support a more reliable downtime workflow.',
+    tags: ['VB .NET', 'SQL', 'Automation', 'Validation'],
+    context:
+      'A local pharmacy environment could fall behind the central database structure used by the main system. During a server outage, that mismatch could leave staff working with an older interface and reduce continuity at a time when reliable access mattered most.',
+    approach:
+      'I built a VB .NET console application that compared schema metadata, generated the required update logic, and synchronized selected data between environments. The process was designed to run during lower-risk periods through a scheduler, reducing dependence on repeated manual preparation.',
     resolutionLabel: 'Validation',
-    resolution: 'Data temporarily redacted.'
+    resolution:
+      'I considered failure scenarios and post-sync checks as part of the delivery rather than treating a successful script run as sufficient. The goal was a repeatable process that could support operational continuity and be checked after each synchronization.',
   },
+
   'allergy-data': {
     slug: 'allergy-data',
-    title: 'Project Title Hidden',
-    eyebrow: 'Category · Technology',
-    shortSummary: 'Project summary is currently under maintenance.',
-    tags: ['Pending'],
-    context: 'Data temporarily redacted.',
-    approach: 'Data temporarily redacted.',
-    resolutionLabel: 'Validation',
-    resolution: 'Data temporarily redacted.'
+    title: 'Allergy Data Optimization & Bug Resolution',
+    eyebrow: 'Clinical workflow · API · Debugging',
+    shortSummary:
+      'Improved a slow allergy-information workflow while tracing a data-update issue in the underlying API behaviour and validating the revised retrieval approach.',
+    tags: ['API', 'Performance', 'Regression testing', 'VB .NET'],
+    context:
+      'Clinical users needed timely access to allergy information, but the existing workflow was slow and certain deletion-type changes were not fully reflected by the update logic. The issue affected both usability and confidence in whether the displayed information was current.',
+    approach:
+      'I improved the in-application presentation of allergy information, including hospital-specific food-allergy details, and packaged shared logic for reuse across related systems. In parallel, I traced the data flow to distinguish application behaviour from limitations in the existing API retrieval pattern.',
+    resolutionLabel: 'Resolution',
+    resolution:
+      'The investigation identified an endpoint-related limitation that affected how changes were retrieved. I revised the retrieval approach and carried out regression checks before release, focusing on whether the updated workflow handled expected changes consistently rather than only improving display speed.',
   },
+
   'copilot-workflow': {
     slug: 'copilot-workflow',
-    title: 'Project Title Hidden',
-    eyebrow: 'Category · Technology',
-    shortSummary: 'Project summary is currently under maintenance.',
-    tags: ['Pending'],
-    context: 'Data temporarily redacted.',
-    approach: 'Data temporarily redacted.',
-    resolutionLabel: 'Validation',
-    resolution: 'Data temporarily redacted.'
+    title: 'Copilot-Assisted Test Scenario Design',
+    eyebrow: 'AI workflow · Test design · Human review',
+    shortSummary:
+      'Used AI-assisted exploration to broaden test-scenario thinking for a process-heavy workflow, while keeping relevance, structure, and final validation under human review.',
+    tags: ['Copilot', 'Test design', 'Process analysis', 'Review'],
+    context:
+      'A process-heavy reconciliation workflow required coverage across data conditions, formatting differences, and exception paths. The challenge was not simply to produce more test cases, but to explore possible scenarios without losing the practical structure needed for review and execution.',
+    approach:
+      'I used Copilot as an exploration aid to surface possible scenarios and questions, then reviewed, filtered, and organized the useful output into a practical test-plan and walkthrough structure. The workflow treated AI output as draft input, not as an authoritative testing decision.',
+    resolutionLabel: 'Principle',
+    resolution:
+      'The value came from combining faster scenario exploration with reviewer judgment. Relevance, completeness, and correctness remained human responsibilities, helping keep the resulting test material aligned with the actual workflow rather than with generic AI-generated assumptions.',
   },
+
   'ftp-permission-automation': {
     slug: 'ftp-permission-automation',
-    title: 'Project Title Hidden',
-    eyebrow: 'Category · Technology',
-    shortSummary: 'Project summary is currently under maintenance.',
-    tags: ['Pending'],
-    context: 'Data temporarily redacted.',
-    approach: 'Data temporarily redacted.',
+    title: 'FTP Permission Automation',
+    eyebrow: 'Early-career build · Java · Access control',
+    shortSummary:
+      'A small Java utility that turned a repetitive FTP setup task into a more consistent, structured, and testable permission-configuration workflow.',
+    tags: ['Java', 'Automation', 'Permissions', 'Testing'],
+    context:
+      'Creating FTP folders and configuring access permissions required repeated manual command entry. This made routine setup slower and introduced avoidable risk from typos, inconsistent inputs, and incorrect permission assignments.',
+    approach:
+      'I built a Java utility that accepted basic setup information and converted it into a structured configuration process. The objective was to reduce repeated manual entry and make the setup steps easier to repeat and verify.',
     resolutionLabel: 'Validation',
-    resolution: 'Data temporarily redacted.'
-  }
+    resolution:
+      'I used dummy accounts to check whether the resulting permissions matched the intended access rules. Although it was an early-career utility, it established a practical pattern that still informs my work: reduce manual risk, make the process repeatable, and verify the result.',
+  },
 };
 
 export const PAGE_VARIANTS: Record<string, PageVariant> = {
-  'general': {
+  general: {
     id: 'general',
     eyebrow: 'Selected systems work',
-    headline: 'Site Under Maintenance',
-    intro: 'This portfolio is currently being updated. Real data has been temporarily suspended.',
-    caseOrder: ['schema-sync', 'allergy-data', 'copilot-workflow', 'ftp-permission-automation']
+    headline: 'Building clearer, more reliable ways of working.',
+    intro:
+      'I work across internal tools, workflow improvement, automation, and validation—especially where a real process is fragile, repetitive, or difficult to maintain.',
+    caseOrder: ['schema-sync', 'allergy-data', 'copilot-workflow', 'ftp-permission-automation'],
   },
-  'XXX': {
-    id: 'XXX',
-    eyebrow: 'Private Variant',
-    headline: 'Site Under Maintenance',
-    intro: 'This specific portfolio view is currently under maintenance.',
-    caseOrder: ['schema-sync', 'copilot-workflow', 'allergy-data', 'ftp-permission-automation']
-  }
+
+  test: {
+    id: 'test',
+    eyebrow: 'Test variant',
+    headline: 'Testing a tailored portfolio view.',
+    intro:
+      'A temporary route for testing alternate content order, messaging, and layout behaviour before creating a dedicated portfolio variant.',
+    caseOrder: ['schema-sync', 'copilot-workflow', 'allergy-data', 'ftp-permission-automation'],
+  },
 };
 
 export const UI_COPY = {
@@ -217,16 +145,18 @@ export const UI_COPY = {
     skillsTitle: 'Skills',
     educationTitle: 'Education',
   },
+
   caseStudy: {
-    backBtn: '← Back to work',
+    backBtn: 'Back to work',
     logicStrip: ['Understand', 'Structure', 'Validate', 'Release'],
     contextTitle: 'Context',
     approachTitle: 'Approach',
     notFoundTitle: 'Case Not Found',
     notFoundDesc: 'The project you are looking for does not exist or has been removed.',
-    returnHomeBtn: 'Return to Homepage'
+    returnHomeBtn: 'Return to selected work',
   },
+
   footer: {
     heading: 'Open to thoughtful technical work.',
-  }
+  },
 };

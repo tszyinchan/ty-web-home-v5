@@ -8,45 +8,51 @@ import { APP_CONFIG, CASE_STUDIES, UI_COPY } from '../app.constants';
   standalone: true,
   imports: [RouterLink],
   template: `
-    <main class="case-page grid-layout">
+  <main class="case-page">
+    <div class="grid-layout">
       <div class="back-link-wrapper">
-        <!-- 👇 改用動態變數 -->
-        <a routerLink="/" class="back-link">{{ uiCopy.caseStudy.backBtn }}</a>
+        <a routerLink="/" fragment="work" class="back-link">
+          {{ uiCopy.caseStudy.backBtn }}
+        </a>
       </div>
+
       @if (caseData(); as data) {
         <article class="case-article">
           <header class="case-header">
             <span class="eyebrow">{{ data.eyebrow }}</span>
+
             <h1 class="title">{{ data.title }}</h1>
+
             <p class="summary">{{ data.shortSummary }}</p>
-            <div class="tags">
+
+            <div class="tags" aria-label="Project technologies and topics">
               @for (tag of data.tags; track tag) {
                 <span class="tag">{{ tag }}</span>
               }
             </div>
           </header>
 
-          <div class="logic-strip" aria-hidden="true">
-            <!-- 👇 使用 @for 迴圈來渲染陣列與箭頭，超級 DRY！ -->
+          <div class="logic-strip" aria-label="Delivery approach">
             @for (step of uiCopy.caseStudy.logicStrip; track step; let last = $last) {
               <span class="step">{{ step }}</span>
+
               @if (!last) {
-                <span class="arrow">→</span>
+                <span class="arrow" aria-hidden="true">→</span>
               }
             }
           </div>
 
           <section class="case-body">
             <div class="content-block">
-              <!-- 👇 改用動態變數 -->
               <h2>{{ uiCopy.caseStudy.contextTitle }}</h2>
               <p>{{ data.context }}</p>
             </div>
+
             <div class="content-block">
-              <!-- 👇 改用動態變數 -->
               <h2>{{ uiCopy.caseStudy.approachTitle }}</h2>
               <p>{{ data.approach }}</p>
             </div>
+
             <div class="content-block">
               <h2>{{ data.resolutionLabel }}</h2>
               <p>{{ data.resolution }}</p>
@@ -54,134 +60,196 @@ import { APP_CONFIG, CASE_STUDIES, UI_COPY } from '../app.constants';
           </section>
         </article>
       } @else {
-        <div class="not-found" style="text-align: center; padding: 6rem 0;">
-          <!-- 👇 改用動態變數 -->
-          <h2
-            style="font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 1rem; color: var(--color-text-primary);"
-          >
-            {{ uiCopy.caseStudy.notFoundTitle }}
-          </h2>
-          <p
-            style="color: var(--color-text-secondary); margin-bottom: 2.5rem; font-size: 1.125rem;"
-          >
-            {{ uiCopy.caseStudy.notFoundDesc }}
-          </p>
-          <a
-            routerLink="/"
-            style="display: inline-block; padding: 0.75rem 1.5rem; background: var(--color-text-primary); color: var(--color-bg-primary); text-decoration: none; border-radius: 4px; font-weight: 500; transition: opacity 0.2s;"
-          >
+        <div class="not-found">
+          <h2>{{ uiCopy.caseStudy.notFoundTitle }}</h2>
+          <p>{{ uiCopy.caseStudy.notFoundDesc }}</p>
+          <a routerLink="/" fragment="work" class="return-home">
             {{ uiCopy.caseStudy.returnHomeBtn }}
           </a>
         </div>
       }
-    </main>
-  `,
-  styles: [
-    `
-      .case-page {
-        /* 👇 修正：拆分 padding，保留 grid-layout 的左右留白 */
-        padding-top: 3rem;
-        padding-bottom: 6rem;
-      }
-      .back-link-wrapper {
-        margin-bottom: 3rem;
-      }
-      .back-link {
-        color: var(--color-text-secondary);
-        text-decoration: none;
-        font-size: 0.875rem;
-        transition: color 0.2s;
-      }
-      .back-link:hover {
-        color: var(--color-accent);
-      }
-      .case-article {
-        max-width: 48rem;
-        margin: 0 auto;
-      }
-      .case-header {
-        margin-bottom: 3rem;
-        text-align: center;
-      }
-      .eyebrow {
-        font-size: 0.875rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--color-accent);
-        font-weight: 600;
-        display: block;
-        margin-bottom: 1rem;
-      }
-      .title {
-        font-family: var(--font-display);
-        font-size: clamp(2rem, 4vw, 3rem);
-        color: var(--color-text-primary);
-        margin: 0 0 1.5rem 0;
-        line-height: 1.2;
-      }
-      .summary {
-        font-size: 1.25rem;
-        color: var(--color-text-secondary);
-        line-height: 1.6;
-        margin-bottom: 2rem;
-      }
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.5rem;
-      }
-      .tag {
-        font-size: 0.75rem;
-        padding: 0.25rem 0.75rem;
-        border: 1px solid var(--color-border);
-        border-radius: 4px;
-        color: var(--color-text-secondary);
-      }
+    </div>
+  </main>
+`,
+  styles: `
+  .case-page {
+    padding: 3rem 0 6rem;
+  }
 
-      .logic-strip {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        padding: 1.5rem;
-        background: var(--color-surface);
-        border: 1px solid var(--color-border);
-        border-radius: 4px;
-        margin-bottom: 4rem;
-      }
-      .step {
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--color-text-primary);
-        font-weight: 500;
-      }
-      .arrow {
-        color: var(--color-border);
-      }
+  .back-link-wrapper {
+    margin-bottom: 3.5rem;
+  }
 
-      .case-body {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem;
-      }
-      .content-block h2 {
-        font-family: var(--font-display);
-        font-size: 1.25rem;
-        border-bottom: 1px solid var(--color-border);
-        padding-bottom: 0.5rem;
-        margin-bottom: 1rem;
-        color: var(--color-text-primary);
-      }
-      .content-block p {
-        font-size: 1.125rem;
-        line-height: 1.7;
-        color: var(--color-text-secondary);
-      }
-    `,
-  ],
+  .back-link {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .back-link::before {
+    content: '←';
+  }
+
+  .back-link:hover {
+    color: var(--color-accent);
+  }
+
+  .case-article {
+    max-width: 68rem;
+  }
+
+  .case-header {
+    max-width: 52rem;
+    margin-bottom: 3rem;
+  }
+
+  .eyebrow {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--color-accent);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .title {
+    margin: 0 0 1.5rem;
+    color: var(--color-text-primary);
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .summary {
+    max-width: 46rem;
+    margin: 0 0 2rem;
+    color: var(--color-text-secondary);
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+    line-height: 1.65;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    padding: 0.3rem 0.625rem;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+    color: var(--color-text-secondary);
+    font-size: 0.75rem;
+    line-height: 1;
+  }
+
+  .logic-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 4rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .step {
+    color: var(--color-text-primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .arrow {
+    color: var(--color-text-secondary);
+    font-size: 0.875rem;
+  }
+
+  .case-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+    max-width: 44rem;
+  }
+
+  .content-block h2 {
+    margin: 0 0 1rem;
+    padding-bottom: 0.625rem;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+  }
+
+  .content-block p {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 1.125rem;
+    line-height: 1.75;
+  }
+
+  .not-found {
+    max-width: 44rem;
+    padding: 4rem 0;
+  }
+
+  .not-found h2 {
+    margin: 0 0 1rem;
+    color: var(--color-text-primary);
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 2.75rem);
+  }
+
+  .not-found p {
+    margin: 0 0 2rem;
+    color: var(--color-text-secondary);
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+
+  .return-home {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    background: var(--color-text-primary);
+    color: var(--color-bg-primary);
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .return-home:hover {
+    opacity: 0.9;
+  }
+
+  @media (max-width: 639px) {
+    .case-page {
+      padding: 2rem 0 4rem;
+    }
+
+    .back-link-wrapper {
+      margin-bottom: 2.5rem;
+    }
+
+    .title {
+      font-size: clamp(2.25rem, 11vw, 3.25rem);
+    }
+
+    .logic-strip {
+      gap: 0.625rem;
+      margin-bottom: 3rem;
+    }
+
+    .case-body {
+      gap: 3rem;
+    }
+  }
+`,
 })
 export class CaseStudy {
   slug = input<string>();

@@ -7,14 +7,13 @@ export const routes: Routes = [
     data: { variant: 'general' },
   },
   {
-    path: 'XXX',
+    path: 'test',
     loadComponent: () => import('./features/home').then((m) => m.Home),
-    data: { variant: 'XXX' },
+    data: { variant: 'test' },
   },
   {
     path: 'case/:slug',
-    loadComponent: () =>
-      import('./features/case-study').then((m) => m.CaseStudy),
+    loadComponent: () => import('./features/case-study').then((m) => m.CaseStudy),
   },
   { path: '**', redirectTo: '' },
 ];

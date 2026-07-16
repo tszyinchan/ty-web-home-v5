@@ -88,24 +88,26 @@ import { SiteSettingsService } from '../../core/services/site-settings.service';
   ],
 })
 export class SitePopup implements OnInit {
-  settings = inject(SiteSettingsService).settings;
-  dismissed = signal(true);
+  readonly settings = inject(SiteSettingsService).settings;
+  readonly dismissed = signal(true);
 
-  private platformId = inject(PLATFORM_ID);
+  private readonly platformId = inject(PLATFORM_ID);
 
-  ngOnInit() {
-    if (isPlatformBrowser(this.platformId)) {
-      const hasSeenPopup = localStorage.getItem('tyweb_popup_dismissed');
-      if (!hasSeenPopup) {
-        this.dismissed.set(false);
-      }
-    } else {
+  ngOnInit(): void {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    const hasSeenPopup = localStorage.getItem('tyweb_popup_dismissed');
+
+    if (!hasSeenPopup) {
       this.dismissed.set(false);
     }
   }
 
-  dismiss() {
+  dismiss(): void {
     this.dismissed.set(true);
+
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem('tyweb_popup_dismissed', 'true');
     }
