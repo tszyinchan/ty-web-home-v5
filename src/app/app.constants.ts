@@ -1,14 +1,14 @@
 import { CaseStudy, PageVariant } from './core/models/site.models';
 
 export const APP_CONFIG = {
-  appName: 'Tsz Yin Chan | Systems, Workflows & Reliability',
-  ownerName: 'Tsz Yin Chan',
+  appName: 'TY Chan | Systems, Workflows & Reliability',
+  ownerName: 'TY Chan',
   version: {
     major: 5,
     minor: 3,
-    patch: 0,
+    patch: 1,
   },
-  versionDate: '2026-07-15',
+  versionDate: '2026-07-25',
   contentLastUpdated: '2026-07-15',
 };
 
