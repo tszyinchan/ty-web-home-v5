@@ -1,0 +1,42 @@
+<footer id="contact" class="site-footer">
+  <div class="grid-layout footer-content">
+    <div class="footer-left">
+      <h2 class="footer-heading">{{ uiCopy.footer.heading }}</h2>
+      <div class="footer-links">
+        @if (settings().contactEmail) {
+          <a
+            [href]="'mailto:' + settings().contactEmail"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Email</a
+          >
+        }
+        @if (settings().linkedinUrl) {
+          <a [href]="settings().linkedinUrl" target="_blank" rel="noopener noreferrer"
+            >LinkedIn</a
+          >
+        }
+        @if (settings().githubUrl) {
+          <a [href]="settings().githubUrl" target="_blank" rel="noopener noreferrer">GitHub</a>
+        }
+        @if (settings().resumeUrl) {
+          <a [href]="settings().resumeUrl" target="_blank" rel="noopener noreferrer">Resume</a>
+        }
+      </div>
+    </div>
+
+    <div class="footer-meta">
+      <p class="copyright">
+        &copy; {{ currentYear }} {{ appConfig.ownerName }}. All rights reserved.
+      </p>
+      <p class="version-info">
+        Site v{{ appConfig.version.major }}.{{ appConfig.version.minor }}.{{
+          appConfig.version.patch
+        }}
+        ({{ appConfig.versionDate }})
+        <span class="divider">|</span>
+        Content Updated: {{ appConfig.contentLastUpdated }}
+      </p>
+    </div>
+  </div>
+</footer>

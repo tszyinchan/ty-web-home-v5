@@ -18,6 +18,12 @@ export interface PageVariant {
   caseOrder: string[];
 }
 
+export enum RecordStatus {
+  Active = 1,
+}
+
+export const SETTINGS_SINGLETON_KEY = 1;
+
 export interface SiteSettings {
   contactEmail: string;
   linkedinUrl: string;

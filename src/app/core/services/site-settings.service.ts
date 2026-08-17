@@ -1,6 +1,6 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { SupabaseService } from './supabase.service';
-import { SiteSettings } from '../models/site.models';
+import { RecordStatus, SETTINGS_SINGLETON_KEY, SiteSettings } from '../models/site.models';
 
 const DEFAULT_SETTINGS: SiteSettings = {
   contactEmail: '',
@@ -25,8 +25,8 @@ export class SiteSettingsService {
       const { data, error } = await this.supabase
         .from('tyweb_v5_settings')
         .select('*')
-        .eq('singleton_key', 1)
-        .eq('status', 1)
+        .eq('singleton_key', SETTINGS_SINGLETON_KEY)
+        .eq('status', RecordStatus.Active)
         .is('deleted_at', null)
         .maybeSingle();
 

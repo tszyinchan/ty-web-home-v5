@@ -1,0 +1,39 @@
+<header class="site-header">
+  <nav class="nav-container grid-layout" aria-label="Primary">
+    <a routerLink="/" class="logo">{{ appConfig.ownerName }}</a>
+
+    <div class="nav-actions">
+      <div class="nav-links">
+        <a routerLink="/" fragment="work">Work</a>
+        <a routerLink="/" fragment="profile">Profile</a>
+        <a routerLink="/" fragment="contact">Contact</a>
+      </div>
+
+      <button
+        type="button"
+        class="theme-toggle"
+        (click)="theme.toggleTheme()"
+        [attr.aria-label]="theme.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+        [attr.title]="theme.isDarkMode() ? 'Switch to light mode' : 'Switch to dark mode'"
+      >
+        @if (theme.isDarkMode()) {
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="theme-icon">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="M4.93 4.93l1.41 1.41"></path>
+            <path d="M17.66 17.66l1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="M4.93 19.07l1.41-1.41"></path>
+            <path d="M17.66 6.34l1.41-1.41"></path>
+          </svg>
+        } @else {
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="theme-icon">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+          </svg>
+        }
+      </button>
+    </div>
+  </nav>
+</header>

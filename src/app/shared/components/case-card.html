@@ -1,0 +1,34 @@
+<a
+  [routerLink]="['/case', caseData().slug]"
+  class="case-card"
+  [class.featured]="isFeatured()"
+  [attr.aria-label]="'Read case study: ' + caseData().title"
+>
+  @if (isFeatured()) {
+    <div class="feature-index">
+      <span class="feature-number">1</span>
+      <span class="feature-label">Featured system</span>
+    </div>
+  }
+
+  <div class="card-content">
+    <span class="eyebrow">{{ caseData().eyebrow }}</span>
+
+    <h3 class="title">{{ caseData().title }}</h3>
+
+    <p class="summary">{{ caseData().shortSummary }}</p>
+
+    <div class="card-footer">
+      <div class="tags" aria-label="Project technologies and topics">
+        @for (tag of caseData().tags; track tag) {
+          <span class="tag">{{ tag }}</span>
+        }
+      </div>
+
+      <span class="action-link">
+        {{ isFeatured() ? 'View featured case' : 'Read case' }}
+        <span aria-hidden="true">→</span>
+      </span>
+    </div>
+  </div>
+</a>

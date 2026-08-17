@@ -1,0 +1,62 @@
+<main class="case-page">
+  <div class="grid-layout">
+    <div class="back-link-wrapper">
+      <a routerLink="/" fragment="work" class="back-link">
+        {{ uiCopy.caseStudy.backBtn }}
+      </a>
+    </div>
+
+    @if (caseData(); as data) {
+      <article class="case-article">
+        <header class="case-header">
+          <span class="eyebrow">{{ data.eyebrow }}</span>
+
+          <h1 class="title">{{ data.title }}</h1>
+
+          <p class="summary">{{ data.shortSummary }}</p>
+
+          <div class="tags" aria-label="Project technologies and topics">
+            @for (tag of data.tags; track tag) {
+              <span class="tag">{{ tag }}</span>
+            }
+          </div>
+        </header>
+
+        <div class="logic-strip" aria-label="Delivery approach">
+          @for (step of uiCopy.caseStudy.logicStrip; track step; let last = $last) {
+            <span class="step">{{ step }}</span>
+
+            @if (!last) {
+              <span class="arrow" aria-hidden="true">→</span>
+            }
+          }
+        </div>
+
+        <section class="case-body">
+          <div class="content-block">
+            <h2>{{ uiCopy.caseStudy.contextTitle }}</h2>
+            <p>{{ data.context }}</p>
+          </div>
+
+          <div class="content-block">
+            <h2>{{ uiCopy.caseStudy.approachTitle }}</h2>
+            <p>{{ data.approach }}</p>
+          </div>
+
+          <div class="content-block">
+            <h2>{{ data.resolutionLabel }}</h2>
+            <p>{{ data.resolution }}</p>
+          </div>
+        </section>
+      </article>
+    } @else {
+      <div class="not-found">
+        <h2>{{ uiCopy.caseStudy.notFoundTitle }}</h2>
+        <p>{{ uiCopy.caseStudy.notFoundDesc }}</p>
+        <a routerLink="/" fragment="work" class="return-home">
+          {{ uiCopy.caseStudy.returnHomeBtn }}
+        </a>
+      </div>
+    }
+  </div>
+</main>
