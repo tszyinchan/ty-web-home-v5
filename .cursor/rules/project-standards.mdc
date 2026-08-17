@@ -1,0 +1,49 @@
+---
+description: Core coding standards and conventions for ty-web-home-v5
+alwaysApply: true
+---
+
+# Response Language
+Respond in Traditional Chinese (繁體中文) by default, even when the user writes in English. Keep code, file paths, commands, error messages, and technical terms (library/API names) in their original English form. Only respond in English if explicitly asked to.
+
+# Role & Context
+You are maintaining **ty-web-home-v5**, a personal portfolio/marketing site (Angular, zoneless, standalone components) built and maintained by a single developer. It is a mostly-static content site: page copy and case studies live in `app.constants.ts`, and the only dynamic/backend piece is a read-only Supabase fetch for site settings (contact links, notice bar, popup). There is no admin UI, no CRUD, and no forms in this project — do not introduce that complexity speculatively.
+
+# Philosophy: Hold the Line vs. Let It Go
+Before adding any process or abstraction, ask: *"Does this protect against a real risk (broken build, visitor-facing bug, future-you confusion), or does it only exist to coordinate people/scale this project doesn't have?"*
+
+**Hold the line on:** type safety, no magic numbers, consistent naming, the existing `core/features/shared` structure, and the version/commit convention (Section 6).
+
+**Let go of:** layered service architecture, mandatory unit/e2e tests or auto-scaffolded `.spec.ts` files, strict git process (PR review, branch protection), Angular Material, i18n frameworks, and forms tooling (Reactive/Template-driven forms) — none of this is needed until the project actually grows a form or a second content source.
+
+# 1. TypeScript & Angular Patterns
+- **No `any`:** use proper interfaces/types (see `core/models/site.models.ts`) or `unknown` if truly dynamic.
+- **No magic numbers:** the Supabase settings query hardcodes `.eq('singleton_key', 1).eq('status', 1)` — when touching this code, introduce a small shared enum/const (e.g. `RecordStatus.Active = 1`) instead of repeating raw numbers.
+- **Modern Angular only:** standalone components, `inject()`, the new control-flow syntax (`@if`/`@for`), and signal-based `input()`/`output()` — not the legacy `@Input()`/`@Output()` decorators. `CaseCard` still uses `@Input()`; prefer `input()` there when it's next touched.
+- **No direct DOM manipulation** inside components (no `document.getElementById`/`querySelector`/`element.style`); drive the DOM via signals and class/attribute bindings instead.
+  - Exception: `ThemeService` toggles `document.documentElement.classList` to set `dark-theme` on `<html>`. This is accepted because `<html>` sits outside any component's template and Angular has no binding surface for it — do not "fix" this into a component-level binding.
+
+# 2. Supabase Data Access
+- This project only ever *reads* from Supabase (`SiteSettingsService`) — there is no create/update/delete flow, so no soft-delete RPC or mutation pattern is needed here.
+- Keep filtering out soft-deleted/inactive rows in queries: `.is('deleted_at', null)` plus a status filter, matching the existing `initializeSettings()` pattern.
+- On fetch failure, fall back silently to `DEFAULT_SETTINGS` with a `console.warn` — do **not** surface a visitor-facing error banner for a background settings fetch. This differs from an admin-tool convention on purpose: a portfolio visitor doesn't need to know a background sync failed.
+- The app uses `provideZonelessChangeDetection()` — there is no Zone.js, so don't wrap post-`await` signal writes in `NgZone.run()`; a plain `signal.set(...)` after `await` is correct here.
+
+# 3. Component & File Structure
+- Keep the existing `core/` (services, models) / `features/` (routed pages) / `shared/components/` split — do not introduce Jaxfr-style `*-list`/`*-edit` scaffolding; there are no list/edit admin pages in this project.
+- Template/style co-location: prefer separate `.html`/`.scss` files (like `Home`) once a component's template exceeds roughly 30–40 lines; small presentational components (like `CaseCard`, `NoticeBar`) may keep inline `template`/`styles`.
+
+# 4. Styling & SCSS
+- **No `!important`** except the documented `prefers-reduced-motion` reset in `styles.scss` — that's a standard, accepted accessibility override; don't add new `!important` rules elsewhere without the same justification.
+- **No inline `style="..."`** in templates — use CSS classes and the existing `--color-*`/`--font-*` custom properties defined in `styles.scss`.
+- This project does not use Angular Material — don't add it for a single control; prefer plain HTML/CSS or a small custom component.
+
+# 5. Testing & Workflow
+- **No mandatory tests.** Vitest is wired up via `ng test`, but don't auto-generate `.spec.ts` files unless explicitly asked.
+- **Lightweight git process.** Direct commits are normal; no enforced PR review or commit template beyond Section 6.
+
+# 6. Versioning & Commit Convention
+- **Single source of truth:** `APP_CONFIG.version` (`major`/`minor`/`patch`) and `versionDate` in `app.constants.ts`. Update it whenever you commit a change.
+- **Bump heuristic:** new page/section/feature → bump `minor` (reset `patch` to 0). Bug fix, copy tweak, style fix, refactor → bump `patch`. Breaking redesign → bump `major` (reset `minor`/`patch`). State the proposed bump before committing so the user can confirm.
+- **Commit message format:** `VerX.X.X-<concise description>`, matching existing history (e.g. `Ver5.3.1-Update name`, `V5.2.0-Fix coding style`).
+- Update `contentLastUpdated` in `APP_CONFIG` too when case-study/profile copy changes, separately from the code version.

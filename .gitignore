@@ -44,3 +44,6 @@ __screenshots__/
 Thumbs.db
 
 /src/environments/
+
+# Repomix output
+repomix-output.xml
