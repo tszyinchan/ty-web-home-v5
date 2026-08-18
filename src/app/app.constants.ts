@@ -1,15 +1,42 @@
 import { CaseStudy, PageVariant } from './core/models/site.models';
 
+export const SITE_URL = 'https://tszyin.com';
+
 export const APP_CONFIG = {
   appName: 'TY Chan | Systems, Workflows & Reliability',
   ownerName: 'TY Chan',
   version: {
     major: 5,
-    minor: 3,
-    patch: 3,
+    minor: 4,
+    patch: 0,
   },
-  versionDate: '2026-08-17',
+  versionDate: '2026-08-18',
   contentLastUpdated: '2026-07-15',
+};
+
+export const SEO_DEFAULTS = {
+  title: 'TY Chan | Systems, Workflows & Reliability',
+  description:
+    'TY Chan — systems, workflows, and reliability. RPA QA testing at KPMG Canada, hospital systems programming, and process automation, with a focus on validation, testability, and clear documentation.',
+  ogImage: `${SITE_URL}/og-image.png`,
+  person: {
+    name: 'TY Chan',
+    alternateName: ['Jack Chan', 'Tsz Yin Chan'],
+    jobTitle: 'RPA QA Tester',
+    worksFor: 'KPMG Canada',
+    knowsAbout: [
+      'RPA',
+      'Blue Prism',
+      'ServiceNow',
+      'UAT',
+      'Regression Testing',
+      'Azure',
+      'SQL',
+      'PowerShell',
+      'Test Automation',
+      'Workflow Validation',
+    ],
+  },
 };
 
 export const ABOUT_COPY = [

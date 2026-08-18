@@ -1,8 +1,8 @@
 import { Component, inject, input, computed, effect } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SiteSettingsService } from '../core/services/site-settings.service';
+import { SeoService } from '../core/services/seo.service';
 import { CaseCard } from '../shared/components/case-card';
-import { Title } from '@angular/platform-browser';
 import {
   APP_CONFIG,
   PAGE_VARIANTS,
@@ -10,6 +10,7 @@ import {
   ABOUT_COPY,
   PROFILE_DATA,
   UI_COPY,
+  SEO_DEFAULTS,
 } from '../app.constants';
 
 @Component({
@@ -22,7 +23,7 @@ import {
 export class Home {
   settings = inject(SiteSettingsService).settings;
   variant = input<string>('general');
-  private titleService = inject(Title);
+  private seo = inject(SeoService);
 
   pageVariant = computed(() => PAGE_VARIANTS[this.variant()] || PAGE_VARIANTS['general']);
   cases = computed(
@@ -40,11 +41,17 @@ export class Home {
   constructor() {
     effect(() => {
       const currentVariant = this.pageVariant();
-      if (currentVariant && currentVariant.id !== 'general') {
-        this.titleService.setTitle(`${this.appConfig.ownerName} | ${currentVariant.eyebrow}`);
-      } else {
-        this.titleService.setTitle(`${this.appConfig.ownerName} | Systems & Workflows`);
-      }
+      const isTestVariant = currentVariant?.id === 'test';
+
+      this.seo.updateMetaTags({
+        title: isTestVariant
+          ? `${this.appConfig.ownerName} | ${currentVariant.eyebrow}`
+          : `${this.appConfig.ownerName} | Systems & Workflows`,
+        description: isTestVariant ? currentVariant.intro : SEO_DEFAULTS.description,
+        path: isTestVariant ? '/test' : '/',
+        // The /test route is a temporary content-variant for internal review, not real content.
+        robots: isTestVariant ? 'noindex, follow' : 'index, follow',
+      });
     });
   }
 }

@@ -1,6 +1,6 @@
 import { Component, input, computed, inject, effect } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Title } from '@angular/platform-browser';
+import { SeoService } from '../core/services/seo.service';
 import { APP_CONFIG, CASE_STUDIES, UI_COPY } from '../app.constants';
 
 @Component({
@@ -20,17 +20,23 @@ export class CaseStudy {
     return currentSlug ? CASE_STUDIES[currentSlug] : undefined;
   });
 
-  private titleService = inject(Title);
+  private seo = inject(SeoService);
 
   constructor() {
     effect(() => {
       const data = this.caseData();
       if (data) {
-        this.titleService.setTitle(`${data.title} | ${this.appConfig.ownerName}`);
+        this.seo.updateMetaTags({
+          title: `${data.title} | ${this.appConfig.ownerName}`,
+          description: data.shortSummary,
+          path: `/case/${data.slug}`,
+        });
       } else {
-        this.titleService.setTitle(
-          `${this.uiCopy.caseStudy.notFoundTitle} | ${this.appConfig.ownerName}`,
-        );
+        this.seo.updateMetaTags({
+          title: `${this.uiCopy.caseStudy.notFoundTitle} | ${this.appConfig.ownerName}`,
+          description: this.uiCopy.caseStudy.notFoundDesc,
+          robots: 'noindex, follow',
+        });
       }
     });
   }

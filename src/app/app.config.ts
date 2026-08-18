@@ -9,6 +9,7 @@ import { provideRouter, withInMemoryScrolling, withComponentInputBinding } from 
 
 import { routes } from './app.routes';
 import { SiteSettingsService } from './core/services/site-settings.service';
+import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,6 +26,6 @@ export const appConfig: ApplicationConfig = {
     provideAppInitializer(() => {
       const settingsService = inject(SiteSettingsService);
       return settingsService.initializeSettings();
-    }),
+    }), provideClientHydration(withEventReplay()),
   ],
 };
