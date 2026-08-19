@@ -7,17 +7,17 @@ export const APP_CONFIG = {
   ownerName: 'TY Chan',
   version: {
     major: 5,
-    minor: 4,
-    patch: 1,
+    minor: 5,
+    patch: 0,
   },
-  versionDate: '2026-08-18',
-  contentLastUpdated: '2026-07-15',
+  versionDate: '2026-08-19',
+  contentLastUpdated: '2026-08-19',
 };
 
 export const SEO_DEFAULTS = {
   title: 'TY Chan | Systems, Workflows & Reliability',
   description:
-    'TY Chan — systems, workflows, and reliability. RPA QA testing at KPMG Canada, hospital systems programming, and process automation, with a focus on validation, testability, and clear documentation.',
+    'TY Chan — process automation and quality validation with a development background. RPA QA testing at KPMG Canada, hospital systems programming, and independent Angular/Supabase builds, with a focus on validation, testability, and clear documentation.',
   ogImage: `${SITE_URL}/og-image.png`,
   person: {
     name: 'TY Chan',
@@ -33,6 +33,9 @@ export const SEO_DEFAULTS = {
       'Azure',
       'SQL',
       'PowerShell',
+      'VB .NET',
+      'Angular',
+      'Supabase',
       'Test Automation',
       'Workflow Validation',
     ],
@@ -40,8 +43,8 @@ export const SEO_DEFAULTS = {
 };
 
 export const ABOUT_COPY = [
-  'I work on the practical side of software delivery: understanding how a real process works, identifying where it can fail, and helping turn that understanding into clearer tools, test coverage, or automation.',
-  'My experience spans internal systems, workflow validation, API-related troubleshooting, and small automation builds. I value solutions that are not only functional, but also understandable, testable, and maintainable by the people who rely on them.',
+  'I have a development background and a verification habit: I learn how a real process works, find where it fails, and turn that into tools, tests, or automation that can be trusted in production—not only something that runs once.',
+  'That mix has shown up in hospital systems programming, enterprise RPA quality work at KPMG Canada, and independent full-stack builds. I value solutions that are not only functional, but understandable, testable, and maintainable by the people who rely on them.',
 ];
 
 export const PROFILE_DATA = {
@@ -49,30 +52,32 @@ export const PROFILE_DATA = {
     {
       title: 'QA Tester, RPA Team',
       company: 'KPMG Canada · Contract',
-      desc: 'Supports test planning, workflow review, change validation, and UAT-oriented delivery for enterprise automation processes.',
+      desc: 'Test planning, workflow review, change validation, and UAT for enterprise RPA processes involving Blue Prism, ServiceNow, Azure, SQL, and PowerShell.',
     },
     {
       title: 'Programmer',
       company: 'St. Teresa’s Hospital',
-      desc: 'Worked on hospital systems, internal tools, API-related troubleshooting, regression checks, and continuity-focused workflow improvements.',
+      desc: 'Hospital systems programming: internal tools, API troubleshooting, schema-sync automation, allergy-data fixes, regression checks, and UAT-oriented releases.',
     },
     {
       title: 'System Engineer Intern',
       company: 'Multisoft Limited',
-      desc: 'Supported environment setup, migration procedures, backups, IT operations, and early automation tooling.',
+      desc: 'Environment setup, PC migrations, backups, IT operations, and a Java utility that automated FTP folder and permission setup.',
     },
   ],
   skills: [
     'Workflow analysis',
-    'Automation',
-    'Validation & UAT support',
-    'Test design',
-    'API troubleshooting',
+    'Validation',
+    'UAT',
+    'Regression Testing',
+    'Blue Prism',
+    'ServiceNow',
+    'Azure',
     'SQL',
-    'VB .NET',
-    'Java',
     'PowerShell',
+    'VB .NET',
     'Angular',
+    'Java',
   ],
   education: 'BSc in Computer Science · City University of Hong Kong',
 };
@@ -126,6 +131,22 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
       'The value came from combining faster scenario exploration with reviewer judgment. Relevance, completeness, and correctness remained human responsibilities, helping keep the resulting test material aligned with the actual workflow rather than with generic AI-generated assumptions.',
   },
 
+  'personal-admin-platform': {
+    slug: 'personal-admin-platform',
+    title: 'Personal Full-Stack Admin Platform',
+    eyebrow: 'Independent build · Angular · Supabase',
+    shortSummary:
+      'A solo-maintained admin platform for personal operational workflows, built as one Angular application on Supabase with hostname-specific surfaces, realtime messaging, and web push.',
+    tags: ['Angular', 'Supabase', 'Realtime', 'PWA'],
+    context:
+      'Personal operational work was spread across disconnected tools. I needed a single system I could keep shipping alone—content, time tracking, and messaging—without an architecture that would become expensive to maintain.',
+    approach:
+      'I built a standalone Angular application on Supabase for authentication, Postgres, row-level security, and realtime updates. One build serves several hostname-specific surfaces. Messaging uses realtime subscriptions and web push; a limited public surface is gated by an opaque access key rather than a full login.',
+    resolutionLabel: 'Principle',
+    resolution:
+      'The constraint was solo maintenance: keep the stack thin, treat access checks and failure paths as part of delivery, and only keep what I would actually use. The result is a working system rather than a demonstration, which is a stricter test of whether the design stays understandable.',
+  },
+
   'ftp-permission-automation': {
     slug: 'ftp-permission-automation',
     title: 'FTP Permission Automation',
@@ -150,7 +171,13 @@ export const PAGE_VARIANTS: Record<string, PageVariant> = {
     headline: 'Building clearer, more reliable ways of working.',
     intro:
       'I work across internal tools, workflow improvement, automation, and validation—especially where a real process is fragile, repetitive, or difficult to maintain.',
-    caseOrder: ['schema-sync', 'allergy-data', 'copilot-workflow', 'ftp-permission-automation'],
+    caseOrder: [
+      'schema-sync',
+      'allergy-data',
+      'copilot-workflow',
+      'personal-admin-platform',
+      'ftp-permission-automation',
+    ],
   },
 
   test: {
@@ -159,7 +186,13 @@ export const PAGE_VARIANTS: Record<string, PageVariant> = {
     headline: 'Testing a tailored portfolio view.',
     intro:
       'A temporary route for testing alternate content order, messaging, and layout behaviour before creating a dedicated portfolio variant.',
-    caseOrder: ['schema-sync', 'copilot-workflow', 'allergy-data', 'ftp-permission-automation'],
+    caseOrder: [
+      'schema-sync',
+      'copilot-workflow',
+      'personal-admin-platform',
+      'allergy-data',
+      'ftp-permission-automation',
+    ],
   },
 };
 
